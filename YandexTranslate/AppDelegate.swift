@@ -16,10 +16,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         onboardingWindowController?.showWindow(nil)
     }
 
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-    }
-
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         onboardingWindowController?.showWindow(sender)
         return true

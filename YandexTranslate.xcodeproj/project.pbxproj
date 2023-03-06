@@ -12,6 +12,11 @@
 		F548443829B46BF60068946C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F548443729B46BF60068946C /* Assets.xcassets */; };
 		F548443B29B46BF60068946C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F548443929B46BF60068946C /* Main.storyboard */; };
 		F595FD7029B592970052828F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD6F29B592970052828F /* main.swift */; };
+		F595FD7229B596130052828F /* TranslationActivator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7129B596130052828F /* TranslationActivator.swift */; };
+		F595FD7529B596D00052828F /* AccessibilityUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7429B596D00052828F /* AccessibilityUIElement.swift */; };
+		F595FD7729B5971A0052828F /* UIElementAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7629B5971A0052828F /* UIElementAccessor.swift */; };
+		F595FD7929B5ABE10052828F /* AccessibilityErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7829B5ABE10052828F /* AccessibilityErrors.swift */; };
+		F595FD7B29B5ADA00052828F /* NSEventExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7A29B5ADA00052828F /* NSEventExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,11 @@
 		F548443A29B46BF60068946C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F548443C29B46BF60068946C /* YandexTranslate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YandexTranslate.entitlements; sourceTree = "<group>"; };
 		F595FD6F29B592970052828F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		F595FD7129B596130052828F /* TranslationActivator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationActivator.swift; sourceTree = "<group>"; };
+		F595FD7429B596D00052828F /* AccessibilityUIElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityUIElement.swift; sourceTree = "<group>"; };
+		F595FD7629B5971A0052828F /* UIElementAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIElementAccessor.swift; sourceTree = "<group>"; };
+		F595FD7829B5ABE10052828F /* AccessibilityErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityErrors.swift; sourceTree = "<group>"; };
+		F595FD7A29B5ADA00052828F /* NSEventExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSEventExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,11 +67,24 @@
 				F548443C29B46BF60068946C /* YandexTranslate.entitlements */,
 				F548443329B46BF40068946C /* AppDelegate.swift */,
 				F595FD6F29B592970052828F /* main.swift */,
+				F595FD7A29B5ADA00052828F /* NSEventExt.swift */,
 				F548443529B46BF40068946C /* OnboardingViewController.swift */,
+				F595FD7129B596130052828F /* TranslationActivator.swift */,
 				F548443729B46BF60068946C /* Assets.xcassets */,
+				F595FD7329B596C30052828F /* Accessibility */,
 				F548443929B46BF60068946C /* Main.storyboard */,
 			);
 			path = YandexTranslate;
+			sourceTree = "<group>";
+		};
+		F595FD7329B596C30052828F /* Accessibility */ = {
+			isa = PBXGroup;
+			children = (
+				F595FD7429B596D00052828F /* AccessibilityUIElement.swift */,
+				F595FD7629B5971A0052828F /* UIElementAccessor.swift */,
+				F595FD7829B5ABE10052828F /* AccessibilityErrors.swift */,
+			);
+			path = Accessibility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,9 +157,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F595FD7929B5ABE10052828F /* AccessibilityErrors.swift in Sources */,
 				F548443629B46BF40068946C /* OnboardingViewController.swift in Sources */,
+				F595FD7729B5971A0052828F /* UIElementAccessor.swift in Sources */,
+				F595FD7229B596130052828F /* TranslationActivator.swift in Sources */,
 				F548443429B46BF40068946C /* AppDelegate.swift in Sources */,
+				F595FD7529B596D00052828F /* AccessibilityUIElement.swift in Sources */,
 				F595FD7029B592970052828F /* main.swift in Sources */,
+				F595FD7B29B5ADA00052828F /* NSEventExt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
