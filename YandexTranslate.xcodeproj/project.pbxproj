@@ -8,18 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		F548443429B46BF40068946C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F548443329B46BF40068946C /* AppDelegate.swift */; };
-		F548443629B46BF40068946C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F548443529B46BF40068946C /* ViewController.swift */; };
+		F548443629B46BF40068946C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F548443529B46BF40068946C /* OnboardingViewController.swift */; };
 		F548443829B46BF60068946C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F548443729B46BF60068946C /* Assets.xcassets */; };
 		F548443B29B46BF60068946C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F548443929B46BF60068946C /* Main.storyboard */; };
+		F595FD7029B592970052828F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD6F29B592970052828F /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F548443029B46BF40068946C /* YandexTranslate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YandexTranslate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F548443329B46BF40068946C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F548443529B46BF40068946C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F548443529B46BF40068946C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		F548443729B46BF60068946C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F548443A29B46BF60068946C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F548443C29B46BF60068946C /* YandexTranslate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YandexTranslate.entitlements; sourceTree = "<group>"; };
+		F595FD6F29B592970052828F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,11 +54,12 @@
 		F548443229B46BF40068946C /* YandexTranslate */ = {
 			isa = PBXGroup;
 			children = (
+				F548443C29B46BF60068946C /* YandexTranslate.entitlements */,
 				F548443329B46BF40068946C /* AppDelegate.swift */,
-				F548443529B46BF40068946C /* ViewController.swift */,
+				F595FD6F29B592970052828F /* main.swift */,
+				F548443529B46BF40068946C /* OnboardingViewController.swift */,
 				F548443729B46BF60068946C /* Assets.xcassets */,
 				F548443929B46BF60068946C /* Main.storyboard */,
-				F548443C29B46BF60068946C /* YandexTranslate.entitlements */,
 			);
 			path = YandexTranslate;
 			sourceTree = "<group>";
@@ -131,8 +134,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F548443629B46BF40068946C /* ViewController.swift in Sources */,
+				F548443629B46BF40068946C /* OnboardingViewController.swift in Sources */,
 				F548443429B46BF40068946C /* AppDelegate.swift in Sources */,
+				F595FD7029B592970052828F /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,8 +279,8 @@
 				DEVELOPMENT_TEAM = BFCZTEYG58;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Yandex Translate";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -302,8 +306,8 @@
 				DEVELOPMENT_TEAM = BFCZTEYG58;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Yandex Translate";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

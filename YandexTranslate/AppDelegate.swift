@@ -7,24 +7,21 @@
 
 import Cocoa
 
-@main
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    
-
+    var onboardingWindowController: NSWindowController?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        onboardingWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateInitialController() as? NSWindowController
+        onboardingWindowController?.window?.setContentSize(NSSize(width: 480, height: 270))
+        onboardingWindowController?.showWindow(nil)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
 
-    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        onboardingWindowController?.showWindow(sender)
         return true
     }
-
-
 }
-
