@@ -1,7 +1,3 @@
-//
-//  ViewController.swift
-//  YandexTranslate
-//
 //  Created by Vladislav Librecht on 05.03.2023.
 //
 
@@ -9,7 +5,7 @@ import Cocoa
 
 class OnboardingViewController: NSViewController {
     @IBOutlet var messageLabel: NSTextField!
-    let translationActivator = TranslationActivator<NSEvent>()
+    let translationActivator = TranslationActivator()
     private var timer: Timer?
     
     override func viewDidLoad() {
@@ -17,7 +13,7 @@ class OnboardingViewController: NSViewController {
         
         let options = [kAXTrustedCheckOptionPrompt.takeRetainedValue() as CFString: true] as CFDictionary
         if AXIsProcessTrustedWithOptions(options) {
-            messageLabel.stringValue = "All's good. Select text in any application and press ⌃` hotkey. You can close this window."
+            messageLabel.stringValue = "All's good. Select text in any application and press ⌃Z hotkey. You can close this window."
             translationActivator.start()
         } else {
             messageLabel.stringValue = "Accessibility is not allowed for this app. To use this app go to\nSystem Preferences > Security & Privacy > Privacy tab > Accessibility.\nSelect checkbox for “Yandex Translate“."

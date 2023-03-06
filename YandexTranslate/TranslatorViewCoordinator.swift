@@ -1,14 +1,10 @@
-//
-//  TranslatorViewCoordinator.swift
-//  YandexTranslate
-//
 //  Created by Vladislav Librecht on 06.03.2023.
 //
 
 import Cocoa
 
 protocol TranslatorViewCoordinating {
-    func showPopover(text: String, textFrame: CGRect)
+    func showPopover(text: String, textFrame: CGRect?)
 }
 
 final class TranslatorViewCoordinator: NSObject, TranslatorViewCoordinating {
@@ -34,9 +30,10 @@ final class TranslatorViewCoordinator: NSObject, TranslatorViewCoordinating {
         popover.delegate = self
     }
     
-    func showPopover(text: String, textFrame: CGRect) {
+    func showPopover(text: String, textFrame: CGRect?) {
         guard let mainScreen = NSScreen.main else { return }
-        var windowFrame = mainScreen.flipYAxis(of: textFrame)
+        
+        var windowFrame = mainScreen.flipYAxis(of: textFrame ?? mainScreen.visibleFrame)
         if windowFrame.width < 1 {
             windowFrame.size.width = 10
         }
@@ -61,7 +58,7 @@ extension TranslatorViewCoordinator: NSPopoverDelegate {
     }
 }
 
-extension NSScreen {
+private extension NSScreen {
     func flipYAxis(of rect: CGRect) -> CGRect {
         CGRect(
             x: rect.origin.x,

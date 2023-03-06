@@ -5,7 +5,7 @@
 //  Created by Vladislav Librecht on 06.03.2023.
 //
 
-import Cocoa
+import ApplicationServices
 
 protocol UIElementAccessing {
     subscript(attribute: UIElementAttributeName) -> UIElementAccessing { get throws }
@@ -18,32 +18,14 @@ protocol UIElementAccessing {
     
     var element: CFTypeRef { get }
     
+    func element<T>(as type: T.Type) throws -> T
+    
     func elementAsCGRect() throws -> CGRect
     
-    func element<T>(as type: T.Type) throws -> T
+    func elementAsArray() throws -> [UIElementAccessing]
 }
 
-struct UIElementAttributeName {
-    let rawValue: String
-    
-    init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-    
-    init(_ value: String) {
-        self.rawValue = value
-    }
-    
-    static let focusedUIElement = UIElementAttributeName(kAXFocusedUIElementAttribute)
-    static let selectedText = UIElementAttributeName(kAXSelectedTextAttribute)
-    static let selectedTextRange = UIElementAttributeName(kAXSelectedTextRangeAttribute)
-    static let selectedTextMarkerRange = UIElementAttributeName("AXSelectedTextMarkerRange")
-    static let attributedStringForTextMarkerRange = UIElementAttributeName("AXAttributedStringForTextMarkerRange")
-    static let boundsForTextMarkerRange = UIElementAttributeName("AXBoundsForTextMarkerRange")
-    static let boundsForRange = UIElementAttributeName(kAXBoundsForRangeParameterizedAttribute)
-}
-
-final class UIElementAccessor: UIElementAccessing {
+struct UIElementAccessor: UIElementAccessing {
     let element: CFTypeRef
     
     init(_ element: CFTypeRef) {
@@ -84,6 +66,13 @@ final class UIElementAccessor: UIElementAccessing {
         }
     }
     
+    func element<T>(as type: T.Type) throws -> T {
+        guard let casted = element as? T else {
+            throw TypeCastingError(element, type)
+        }
+        return casted
+    }
+    
     func elementAsCGRect() throws -> CGRect {
         var output = CGRect()
         guard CFGetTypeID(element) == AXValueGetTypeID() else {
@@ -93,21 +82,53 @@ final class UIElementAccessor: UIElementAccessing {
         return output
     }
     
-    func element<T>(as type: T.Type) throws -> T {
-        guard let casted = element as? T else {
-            throw TypeCastingError(element, type)
+    func elementAsArray() throws -> [UIElementAccessing] {
+        try element(as: [AXUIElement].self).map(UIElementAccessor.init)
+    }
+    
+    private func asAccessibilityUIElement(_ ref: CFTypeRef) -> AccessibilityUIElement? {
+        if CFGetTypeID(ref) == AXUIElementGetTypeID() {
+            return ref as! AXUIElement
         }
-        return casted
+        if let element = ref as? AccessibilityUIElement {
+            return element
+        }
+        return nil
     }
 }
 
-private func asAccessibilityUIElement(_ ref: CFTypeRef) -> AccessibilityUIElement? {
-    if CFGetTypeID(ref) == AXUIElementGetTypeID() {
-        return ref as! AXUIElement
+#if DEBUG
+
+extension UIElementAccessing {
+    var attributeNames: [String] {
+        _attributeNames(element)
     }
-    if let element =  ref as? AccessibilityUIElement {
-        return element
+    
+    var parameterizedAttributeNames: [String] {
+        _parameterizedAttributeNames(element)
     }
-    return nil
 }
 
+extension AXUIElement {
+    var attributeNames: [String] {
+        _attributeNames(self)
+    }
+    
+    var parameterizedAttributeNames: [String] {
+        _parameterizedAttributeNames(self)
+    }
+}
+
+func _attributeNames(_ object: CFTypeRef) -> [String] {
+    var names: CFArray?
+    AXUIElementCopyAttributeNames(object as! AXUIElement, &names)
+    return (names as? [String]) ?? []
+}
+
+func _parameterizedAttributeNames(_ object: CFTypeRef) -> [String] {
+    var names: CFArray?
+    AXUIElementCopyParameterizedAttributeNames(object as! AXUIElement, &names)
+    return (names as? [String]) ?? []
+}
+
+#endif

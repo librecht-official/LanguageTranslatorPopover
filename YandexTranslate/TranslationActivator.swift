@@ -1,58 +1,54 @@
-//
-//  TranslationActivator.swift
-//  YandexTranslate
-//
 //  Created by Vladislav Librecht on 06.03.2023.
 //
 
-import AppKit
+import Cocoa
 import Carbon
 
-final class TranslationActivator<Monitor: GlobalMonitoring> {
-    let systemWide: UIElementAccessing
+typealias TranslationActivator = _TranslationActivator<NSEvent>
+
+@MainActor
+final class _TranslationActivator<Monitor: GlobalMonitoring> {
+    let selectedTextExtractors: [SelectedTextExtracting]
     let coordinator: TranslatorViewCoordinating
     
-    init(systemWide: UIElementAccessing = UIElementAccessor(AXUIElementCreateSystemWide()), coordinator: TranslatorViewCoordinating = TranslatorViewCoordinator()) {
-        self.systemWide = systemWide
+    init(selectedTextExtractors: [SelectedTextExtracting]? = nil, coordinator: TranslatorViewCoordinating = TranslatorViewCoordinator()) {
+        self.selectedTextExtractors = selectedTextExtractors ?? [
+            AccessibilityBasedSelectedTextExtractor(),
+            PasteboardBasedSelectedTextExtractor()
+        ]
         self.coordinator = coordinator
     }
     
     func start() {
         Monitor.addGlobalMonitorForEvents(matching: .keyDown) { [weak self] event in
-            if event.keyCode == kVK_ANSI_Grave && event.modifierFlags.contains(.control) {
-                self?.findSelectedTextAndRunTranslator()
+            if event.type == .keyDown && event.keyCode == kVK_ANSI_Z/*kVK_ANSI_Grave*/ && event.modifierFlags.contains(.control) {
+                Task {
+                    await self?.findSelectedTextAndRunTranslator()
+                }
             }
         }
     }
     
-    private func findSelectedTextAndRunTranslator() {
-        do {
-            let (selectedText, textFrame) = try findSelectedText()
-            print("Selected text: \(selectedText), frame: \(textFrame)")
-            coordinator.showPopover(text: selectedText, textFrame: textFrame)
+    private func findSelectedTextAndRunTranslator() async {
+        if let info = await findSelectedText() {
+            print("Selected text: \(info)")
+            coordinator.showPopover(text: info.text, textFrame: info.textFrame)
         }
-        catch {
-            print(error)
+        else {
+            print("No selected text found")
         }
     }
     
-    private func findSelectedText() throws -> (String, CGRect) {
-        let focusedElement = try systemWide[.focusedUIElement]
-        
-        if let range = try? focusedElement[.selectedTextMarkerRange] {
-            let selectedText = try focusedElement[.attributedStringForTextMarkerRange, range].element(as: NSAttributedString.self)
-            let textFrame = try focusedElement[.boundsForTextMarkerRange, range].elementAsCGRect()
-            
-            return (selectedText.string, textFrame)
+    private func findSelectedText() async -> SelectedTextInfo? {
+        for extractor in selectedTextExtractors {
+            do {
+                let info = try await extractor.selectedTextInfo()
+                return info
+            }
+            catch {
+                print(error)
+            }
         }
-        else if let range = try? focusedElement[.selectedTextRange] {
-            let selectedText = try focusedElement[.selectedText].element(as: String.self)
-            let textFrame = try focusedElement[.boundsForRange, range].elementAsCGRect()
-            
-            return (selectedText, textFrame)
-        }
-        else {
-            throw TextError("Failed to get selected text")
-        }
+        return nil
     }
 }
