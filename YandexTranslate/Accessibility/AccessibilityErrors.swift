@@ -21,11 +21,12 @@ struct UIElementAttributeError: LocalizedError {
     }
 }
 
-extension AXError: LocalizedError {
-    public var errorDescription: String? {
+extension AXError: CustomStringConvertible {
+    public var description: String {
         switch self {
         case .cannotComplete: return "cannotComplete"
-        default: return String.init(describing: self)
+        case .noValue: return "noValue"
+        default: return String.init(reflecting: self)
         }
     }
 }

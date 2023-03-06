@@ -17,6 +17,8 @@
 		F595FD7729B5971A0052828F /* UIElementAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7629B5971A0052828F /* UIElementAccessor.swift */; };
 		F595FD7929B5ABE10052828F /* AccessibilityErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7829B5ABE10052828F /* AccessibilityErrors.swift */; };
 		F595FD7B29B5ADA00052828F /* NSEventExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7A29B5ADA00052828F /* NSEventExt.swift */; };
+		F595FD7D29B5AF1E0052828F /* TranslatorViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7C29B5AF1E0052828F /* TranslatorViewCoordinator.swift */; };
+		F595FD7F29B5B0B70052828F /* TranslatorWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7E29B5B0B70052828F /* TranslatorWebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		F595FD7629B5971A0052828F /* UIElementAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIElementAccessor.swift; sourceTree = "<group>"; };
 		F595FD7829B5ABE10052828F /* AccessibilityErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityErrors.swift; sourceTree = "<group>"; };
 		F595FD7A29B5ADA00052828F /* NSEventExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSEventExt.swift; sourceTree = "<group>"; };
+		F595FD7C29B5AF1E0052828F /* TranslatorViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorViewCoordinator.swift; sourceTree = "<group>"; };
+		F595FD7E29B5B0B70052828F /* TranslatorWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorWebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,8 @@
 				F595FD7A29B5ADA00052828F /* NSEventExt.swift */,
 				F548443529B46BF40068946C /* OnboardingViewController.swift */,
 				F595FD7129B596130052828F /* TranslationActivator.swift */,
+				F595FD7C29B5AF1E0052828F /* TranslatorViewCoordinator.swift */,
+				F595FD7E29B5B0B70052828F /* TranslatorWebViewController.swift */,
 				F548443729B46BF60068946C /* Assets.xcassets */,
 				F595FD7329B596C30052828F /* Accessibility */,
 				F548443929B46BF60068946C /* Main.storyboard */,
@@ -80,9 +86,9 @@
 		F595FD7329B596C30052828F /* Accessibility */ = {
 			isa = PBXGroup;
 			children = (
+				F595FD7829B5ABE10052828F /* AccessibilityErrors.swift */,
 				F595FD7429B596D00052828F /* AccessibilityUIElement.swift */,
 				F595FD7629B5971A0052828F /* UIElementAccessor.swift */,
-				F595FD7829B5ABE10052828F /* AccessibilityErrors.swift */,
 			);
 			path = Accessibility;
 			sourceTree = "<group>";
@@ -160,11 +166,13 @@
 				F595FD7929B5ABE10052828F /* AccessibilityErrors.swift in Sources */,
 				F548443629B46BF40068946C /* OnboardingViewController.swift in Sources */,
 				F595FD7729B5971A0052828F /* UIElementAccessor.swift in Sources */,
+				F595FD7F29B5B0B70052828F /* TranslatorWebViewController.swift in Sources */,
 				F595FD7229B596130052828F /* TranslationActivator.swift in Sources */,
 				F548443429B46BF40068946C /* AppDelegate.swift in Sources */,
 				F595FD7529B596D00052828F /* AccessibilityUIElement.swift in Sources */,
 				F595FD7029B592970052828F /* main.swift in Sources */,
 				F595FD7B29B5ADA00052828F /* NSEventExt.swift in Sources */,
+				F595FD7D29B5AF1E0052828F /* TranslatorViewCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

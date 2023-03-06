@@ -10,9 +10,11 @@ import Carbon
 
 final class TranslationActivator<Monitor: GlobalMonitoring> {
     let systemWide: UIElementAccessing
+    let coordinator: TranslatorViewCoordinating
     
-    init(systemWide: UIElementAccessing = UIElementAccessor(AXUIElementCreateSystemWide())) {
+    init(systemWide: UIElementAccessing = UIElementAccessor(AXUIElementCreateSystemWide()), coordinator: TranslatorViewCoordinating = TranslatorViewCoordinator()) {
         self.systemWide = systemWide
+        self.coordinator = coordinator
     }
     
     func start() {
@@ -27,7 +29,7 @@ final class TranslationActivator<Monitor: GlobalMonitoring> {
         do {
             let (selectedText, textFrame) = try findSelectedText()
             print("Selected text: \(selectedText), frame: \(textFrame)")
-//            coordinator.presentTranslationPopover(text: selectedText, textFrame: textFrame)
+            coordinator.showPopover(text: selectedText, textFrame: textFrame)
         }
         catch {
             print(error)
