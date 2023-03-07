@@ -25,9 +25,9 @@ class OnboardingViewController: NSViewController {
     
     private func relaunchIfProcessTrusted() {
         if AXIsProcessTrusted() {
-            let task = Process()
-            task.executableURL = URL(fileURLWithPath: Bundle.main.executablePath!)
-            try! task.run()
+            let process = Process()
+            process.executableURL = URL(fileURLWithPath: Bundle.main.executablePath!)
+            try? process.run()
             NSApplication.shared.terminate(self)
         }
     }

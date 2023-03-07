@@ -1,7 +1,3 @@
-//
-//  main.swift
-//  YandexTranslate
-//
 //  Created by Vladislav Librecht on 06.03.2023.
 //
 

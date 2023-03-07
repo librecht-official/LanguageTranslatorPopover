@@ -1,7 +1,3 @@
-//
-//  TranslatorWebViewController.swift
-//  YandexTranslate
-//
 //  Created by Vladislav Librecht on 06.03.2023.
 //
 
@@ -9,7 +5,7 @@ import Cocoa
 import WebKit
 
 final class TranslatorWebViewController: NSViewController {
-    let contentSize = CGSize(width: 700, height: 550)
+    let contentSize = CGSize(width: 900, height: 650)
     let webView: WKWebView
     
     init() {

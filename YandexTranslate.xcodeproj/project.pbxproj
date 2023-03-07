@@ -11,9 +11,10 @@
 		F548443629B46BF40068946C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F548443529B46BF40068946C /* OnboardingViewController.swift */; };
 		F548443829B46BF60068946C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F548443729B46BF60068946C /* Assets.xcassets */; };
 		F548443B29B46BF60068946C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F548443929B46BF60068946C /* Main.storyboard */; };
-		F595FD7029B592970052828F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD6F29B592970052828F /* main.swift */; };
 		F5863AA929B72635008109E4 /* SelectedTextExtracting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863AA829B72635008109E4 /* SelectedTextExtracting.swift */; };
 		F5863AAB29B72B67008109E4 /* UIElementAttributeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863AAA29B72B67008109E4 /* UIElementAttributeName.swift */; };
+		F5863AAD29B73465008109E4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5863AAC29B73465008109E4 /* MainMenu.xib */; };
+		F5863AAF29B735B6008109E4 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863AAE29B735B6008109E4 /* main.swift */; };
 		F595FD7229B596130052828F /* TranslationActivator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7129B596130052828F /* TranslationActivator.swift */; };
 		F595FD7529B596D00052828F /* AccessibilityUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7429B596D00052828F /* AccessibilityUIElement.swift */; };
 		F595FD7729B5971A0052828F /* UIElementAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7629B5971A0052828F /* UIElementAccessor.swift */; };
@@ -30,9 +31,10 @@
 		F548443729B46BF60068946C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F548443A29B46BF60068946C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F548443C29B46BF60068946C /* YandexTranslate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YandexTranslate.entitlements; sourceTree = "<group>"; };
-		F595FD6F29B592970052828F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		F5863AA829B72635008109E4 /* SelectedTextExtracting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTextExtracting.swift; sourceTree = "<group>"; };
 		F5863AAA29B72B67008109E4 /* UIElementAttributeName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIElementAttributeName.swift; sourceTree = "<group>"; };
+		F5863AAC29B73465008109E4 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		F5863AAE29B735B6008109E4 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		F595FD7129B596130052828F /* TranslationActivator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationActivator.swift; sourceTree = "<group>"; };
 		F595FD7429B596D00052828F /* AccessibilityUIElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityUIElement.swift; sourceTree = "<group>"; };
 		F595FD7629B5971A0052828F /* UIElementAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIElementAccessor.swift; sourceTree = "<group>"; };
@@ -74,7 +76,7 @@
 			children = (
 				F548443C29B46BF60068946C /* YandexTranslate.entitlements */,
 				F548443329B46BF40068946C /* AppDelegate.swift */,
-				F595FD6F29B592970052828F /* main.swift */,
+				F5863AAE29B735B6008109E4 /* main.swift */,
 				F595FD7A29B5ADA00052828F /* NSEventExt.swift */,
 				F548443529B46BF40068946C /* OnboardingViewController.swift */,
 				F5863AA829B72635008109E4 /* SelectedTextExtracting.swift */,
@@ -82,6 +84,7 @@
 				F595FD7C29B5AF1E0052828F /* TranslatorViewCoordinator.swift */,
 				F595FD7E29B5B0B70052828F /* TranslatorWebViewController.swift */,
 				F548443729B46BF60068946C /* Assets.xcassets */,
+				F5863AAC29B73465008109E4 /* MainMenu.xib */,
 				F595FD7329B596C30052828F /* Accessibility */,
 				F548443929B46BF60068946C /* Main.storyboard */,
 			);
@@ -159,6 +162,7 @@
 			files = (
 				F548443829B46BF60068946C /* Assets.xcassets in Resources */,
 				F548443B29B46BF60068946C /* Main.storyboard in Resources */,
+				F5863AAD29B73465008109E4 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,13 +175,13 @@
 			files = (
 				F5863AA929B72635008109E4 /* SelectedTextExtracting.swift in Sources */,
 				F595FD7929B5ABE10052828F /* AccessibilityErrors.swift in Sources */,
+				F5863AAF29B735B6008109E4 /* main.swift in Sources */,
 				F548443629B46BF40068946C /* OnboardingViewController.swift in Sources */,
 				F595FD7729B5971A0052828F /* UIElementAccessor.swift in Sources */,
 				F595FD7F29B5B0B70052828F /* TranslatorWebViewController.swift in Sources */,
 				F595FD7229B596130052828F /* TranslationActivator.swift in Sources */,
 				F548443429B46BF40068946C /* AppDelegate.swift in Sources */,
 				F595FD7529B596D00052828F /* AccessibilityUIElement.swift in Sources */,
-				F595FD7029B592970052828F /* main.swift in Sources */,
 				F595FD7B29B5ADA00052828F /* NSEventExt.swift in Sources */,
 				F595FD7D29B5AF1E0052828F /* TranslatorViewCoordinator.swift in Sources */,
 				F5863AAB29B72B67008109E4 /* UIElementAttributeName.swift in Sources */,
