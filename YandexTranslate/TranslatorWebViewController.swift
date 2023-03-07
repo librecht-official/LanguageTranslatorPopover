@@ -24,7 +24,17 @@ final class TranslatorWebViewController: NSViewController {
     }
     
     override func loadView() {
-        view = webView
+        let mainView = NSView()
+        mainView.setFrameSize(contentSize)
+        mainView.addSubview(webView)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            webView.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 20),
+            webView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor),
+            webView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor),
+            webView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor),
+        ])
+        view = mainView
     }
     
     func set(textToTranslate text: String) {

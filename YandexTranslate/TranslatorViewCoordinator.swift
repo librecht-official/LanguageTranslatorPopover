@@ -46,7 +46,9 @@ final class TranslatorViewCoordinator: NSObject, TranslatorViewCoordinating {
         panel.makeKeyAndOrderFront(nil)
         panel.orderFrontRegardless()
         
-        popoverContent.set(textToTranslate: text)
+        if !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            popoverContent.set(textToTranslate: text)
+        }
         let anchor = NSRect(origin: .zero, size: windowFrame.size)
         popover.show(relativeTo: anchor, of: panel.contentView!, preferredEdge: .minY)
     }
@@ -55,6 +57,10 @@ final class TranslatorViewCoordinator: NSObject, TranslatorViewCoordinating {
 extension TranslatorViewCoordinator: NSPopoverDelegate {
     func popoverDidClose(_ notification: Notification) {
         panelController.close()
+    }
+    
+    func popoverShouldDetach(_ popover: NSPopover) -> Bool {
+        true
     }
 }
 
