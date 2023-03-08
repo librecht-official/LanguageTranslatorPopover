@@ -42,8 +42,7 @@ final class _TranslationActivator<Monitor: GlobalMonitoring> {
     private func findSelectedText() async -> SelectedTextInfo? {
         for extractor in selectedTextExtractors {
             do {
-                let info = try await extractor.selectedTextInfo()
-                return info
+                return try await extractor.selectedTextInfo()
             }
             catch {
                 print(error)

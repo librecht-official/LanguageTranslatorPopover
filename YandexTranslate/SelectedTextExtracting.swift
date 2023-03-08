@@ -8,7 +8,7 @@ protocol SelectedTextExtracting {
     func selectedTextInfo() async throws -> SelectedTextInfo
 }
 
-struct SelectedTextInfo {
+struct SelectedTextInfo: Equatable {
     let text: String
     let textFrame: CGRect?
 }
@@ -27,20 +27,18 @@ struct AccessibilityBasedSelectedTextExtractor: SelectedTextExtracting {
         // Works for applications that displays HTML like Safari and Mail
         if let range = try? focusedElement[.selectedTextMarkerRange] {
             let selectedText = try focusedElement[.attributedStringForTextMarkerRange, range].element(as: NSAttributedString.self)
-            let textFrame = try focusedElement[.boundsForTextMarkerRange, range].elementAsCGRect()
+            let textFrame = try? focusedElement[.boundsForTextMarkerRange, range].elementAsCGRect()
             
             return SelectedTextInfo(text: selectedText.string, textFrame: textFrame)
         }
         // Works for applications with native UI like Notes, Xcode, etc
         else if let range = try? focusedElement[.selectedTextRange] {
             let selectedText = try focusedElement[.selectedText].element(as: String.self)
-            let textFrame = try focusedElement[.boundsForRange, range].elementAsCGRect()
+            let textFrame = try? focusedElement[.boundsForRange, range].elementAsCGRect()
             
             return SelectedTextInfo(text: selectedText, textFrame: textFrame)
         }
-        else {
-            throw TextError("Got focused element, but failed to get selected text")
-        }
+        throw TextError("Got focused element, but failed to get selected text")
     }
 }
 
@@ -48,9 +46,9 @@ struct AccessibilityBasedSelectedTextExtractor: SelectedTextExtracting {
 
 // Works for application with non-accessable UI (e.g. electron-based) Visual Studio Code and Sublime Text
 struct PasteboardBasedSelectedTextExtractor: SelectedTextExtracting {
-    let pasteboard: NSPasteboard
+    let pasteboard: NSPasteboardProtocol
     
-    init(pasteboard: NSPasteboard = NSPasteboard.general) {
+    init(pasteboard: NSPasteboardProtocol = NSPasteboard.general) {
         self.pasteboard = pasteboard
     }
     

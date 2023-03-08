@@ -15,11 +15,13 @@
 		F5863AAB29B72B67008109E4 /* UIElementAttributeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863AAA29B72B67008109E4 /* UIElementAttributeName.swift */; };
 		F5863AAD29B73465008109E4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5863AAC29B73465008109E4 /* MainMenu.xib */; };
 		F5863AAF29B735B6008109E4 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863AAE29B735B6008109E4 /* main.swift */; };
-		F5863AB729B7605F008109E4 /* YandexTranslateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863AB629B7605F008109E4 /* YandexTranslateTests.swift */; };
 		F5863ACF29B77053008109E4 /* MethodStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863ACB29B77053008109E4 /* MethodStub.swift */; };
 		F5863AD029B77053008109E4 /* AutoMockable.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = F5863ACD29B77053008109E4 /* AutoMockable.swifttemplate */; };
 		F5863AD129B77053008109E4 /* PropertyStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863ACE29B77053008109E4 /* PropertyStub.swift */; };
 		F5863AD429B7720D008109E4 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863AD329B7720D008109E4 /* Mocks.swift */; };
+		F5863AD629B8A90D008109E4 /* NSPasteboardExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863AD529B8A90D008109E4 /* NSPasteboardExt.swift */; };
+		F5863AE129B8AC89008109E4 /* AccessibilityBasedSelectedTextExtractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863AE029B8AC89008109E4 /* AccessibilityBasedSelectedTextExtractorTests.swift */; };
+		F5863AEA29B9C17F008109E4 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863AE929B9C17F008109E4 /* Helpers.swift */; };
 		F595FD7229B596130052828F /* TranslationActivator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7129B596130052828F /* TranslationActivator.swift */; };
 		F595FD7529B596D00052828F /* AccessibilityUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7429B596D00052828F /* AccessibilityUIElement.swift */; };
 		F595FD7729B5971A0052828F /* UIElementAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7629B5971A0052828F /* UIElementAccessor.swift */; };
@@ -51,11 +53,13 @@
 		F5863AAC29B73465008109E4 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		F5863AAE29B735B6008109E4 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		F5863AB429B7605F008109E4 /* YandexTranslateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YandexTranslateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F5863AB629B7605F008109E4 /* YandexTranslateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexTranslateTests.swift; sourceTree = "<group>"; };
 		F5863ACB29B77053008109E4 /* MethodStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MethodStub.swift; sourceTree = "<group>"; };
 		F5863ACD29B77053008109E4 /* AutoMockable.swifttemplate */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AutoMockable.swifttemplate; sourceTree = "<group>"; };
 		F5863ACE29B77053008109E4 /* PropertyStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyStub.swift; sourceTree = "<group>"; };
 		F5863AD329B7720D008109E4 /* Mocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
+		F5863AD529B8A90D008109E4 /* NSPasteboardExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPasteboardExt.swift; sourceTree = "<group>"; };
+		F5863AE029B8AC89008109E4 /* AccessibilityBasedSelectedTextExtractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityBasedSelectedTextExtractorTests.swift; sourceTree = "<group>"; };
+		F5863AE929B9C17F008109E4 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		F595FD7129B596130052828F /* TranslationActivator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationActivator.swift; sourceTree = "<group>"; };
 		F595FD7429B596D00052828F /* AccessibilityUIElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityUIElement.swift; sourceTree = "<group>"; };
 		F595FD7629B5971A0052828F /* UIElementAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIElementAccessor.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 				F548443229B46BF40068946C /* YandexTranslate */,
 				F5863AB529B7605F008109E4 /* YandexTranslateTests */,
 				F548443129B46BF40068946C /* Products */,
+				F5863AE529B8C8E5008109E4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,7 +112,6 @@
 				F548443C29B46BF60068946C /* YandexTranslate.entitlements */,
 				F548443329B46BF40068946C /* AppDelegate.swift */,
 				F5863AAE29B735B6008109E4 /* main.swift */,
-				F595FD7A29B5ADA00052828F /* NSEventExt.swift */,
 				F548443529B46BF40068946C /* OnboardingViewController.swift */,
 				F5863AA829B72635008109E4 /* SelectedTextExtracting.swift */,
 				F595FD7129B596130052828F /* TranslationActivator.swift */,
@@ -117,6 +121,7 @@
 				F5863AAC29B73465008109E4 /* MainMenu.xib */,
 				F595FD7329B596C30052828F /* Accessibility */,
 				F548443929B46BF60068946C /* Main.storyboard */,
+				F5863AD729B8A916008109E4 /* NSExtensions */,
 			);
 			path = YandexTranslate;
 			sourceTree = "<group>";
@@ -124,7 +129,8 @@
 		F5863AB529B7605F008109E4 /* YandexTranslateTests */ = {
 			isa = PBXGroup;
 			children = (
-				F5863AB629B7605F008109E4 /* YandexTranslateTests.swift */,
+				F5863AE029B8AC89008109E4 /* AccessibilityBasedSelectedTextExtractorTests.swift */,
+				F5863AE829B9C16D008109E4 /* Infrastructure */,
 				F5863ACA29B77053008109E4 /* MockGen */,
 				F5863AD229B7720D008109E4 /* Mocks */,
 			);
@@ -157,6 +163,30 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		F5863AD729B8A916008109E4 /* NSExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				F595FD7A29B5ADA00052828F /* NSEventExt.swift */,
+				F5863AD529B8A90D008109E4 /* NSPasteboardExt.swift */,
+			);
+			path = NSExtensions;
+			sourceTree = "<group>";
+		};
+		F5863AE529B8C8E5008109E4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F5863AE829B9C16D008109E4 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				F5863AE929B9C17F008109E4 /* Helpers.swift */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
 		F595FD7329B596C30052828F /* Accessibility */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +214,8 @@
 			dependencies = (
 			);
 			name = YandexTranslate;
+			packageProductDependencies = (
+			);
 			productName = YandexTranslate;
 			productReference = F548443029B46BF40068946C /* YandexTranslate.app */;
 			productType = "com.apple.product-type.application";
@@ -202,6 +234,8 @@
 				F5863AB929B7605F008109E4 /* PBXTargetDependency */,
 			);
 			name = YandexTranslateTests;
+			packageProductDependencies = (
+			);
 			productName = YandexTranslateTests;
 			productReference = F5863AB429B7605F008109E4 /* YandexTranslateTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -234,6 +268,8 @@
 				Base,
 			);
 			mainGroup = F548442729B46BF40068946C;
+			packageReferences = (
+			);
 			productRefGroup = F548443129B46BF40068946C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -282,6 +318,7 @@
 				F595FD7B29B5ADA00052828F /* NSEventExt.swift in Sources */,
 				F595FD7D29B5AF1E0052828F /* TranslatorViewCoordinator.swift in Sources */,
 				F5863AAB29B72B67008109E4 /* UIElementAttributeName.swift in Sources */,
+				F5863AD629B8A90D008109E4 /* NSPasteboardExt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,8 +327,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5863AD129B77053008109E4 /* PropertyStub.swift in Sources */,
+				F5863AE129B8AC89008109E4 /* AccessibilityBasedSelectedTextExtractorTests.swift in Sources */,
 				F5863ACF29B77053008109E4 /* MethodStub.swift in Sources */,
-				F5863AB729B7605F008109E4 /* YandexTranslateTests.swift in Sources */,
+				F5863AEA29B9C17F008109E4 /* Helpers.swift in Sources */,
 				F5863AD429B7720D008109E4 /* Mocks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
