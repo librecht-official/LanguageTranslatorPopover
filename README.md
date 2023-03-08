@@ -7,3 +7,7 @@ The app for macOS that allows to instantly open Yandex translator popover by a k
 ## Features
 * Grabs currently selected text in any application. 
 * Can be detached from popover and used as a standalone window.
+
+### Mocks generation by Sourcery
+
+`$ sourcery --config sourcery.yml` 

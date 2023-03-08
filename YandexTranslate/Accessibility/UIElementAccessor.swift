@@ -7,13 +7,12 @@
 
 import ApplicationServices
 
+// sourcery: AutoMockable
 protocol UIElementAccessing {
-    subscript(attribute: UIElementAttributeName) -> UIElementAccessing { get throws }
-    
-    subscript(attribute: UIElementAttributeName, parameter: UIElementAccessing) -> UIElementAccessing { get throws }
-    
+    // sourcery: throws
     subscript(attribute: String) -> UIElementAccessing { get throws }
     
+    // sourcery: throws
     subscript(attribute: String, parameter: UIElementAccessing) -> UIElementAccessing { get throws }
     
     var element: CFTypeRef { get }
@@ -25,23 +24,27 @@ protocol UIElementAccessing {
     func elementAsArray() throws -> [UIElementAccessing]
 }
 
-struct UIElementAccessor: UIElementAccessing {
-    let element: CFTypeRef
-    
-    init(_ element: CFTypeRef) {
-        self.element = element
-    }
-    
+extension UIElementAccessing {
+    // sourcery: skipStub
     subscript(attribute: UIElementAttributeName) -> UIElementAccessing {
         get throws {
             try self[attribute.rawValue]
         }
     }
     
+    // sourcery: skipStub
     subscript(attribute: UIElementAttributeName, parameter: UIElementAccessing) -> UIElementAccessing {
         get throws {
             try self[attribute.rawValue, parameter]
         }
+    }
+}
+
+struct UIElementAccessor: UIElementAccessing {
+    let element: CFTypeRef
+    
+    init(_ element: CFTypeRef) {
+        self.element = element
     }
     
     subscript(attribute: String) -> UIElementAccessing {

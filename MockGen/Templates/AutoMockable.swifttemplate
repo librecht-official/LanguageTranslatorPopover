@@ -1,0 +1,249 @@
+// swiftlint:disable line_length
+// swiftlint:disable variable_name
+
+import XCTest
+<% for module in argument["autoMockableTestableImports"] as! NSArray { -%>
+@testable import <%= module -%>
+<% } -%>
+
+<% for type in types.protocols where type.annotations["AutoMockable"] != nil { -%>
+
+  <%_ %>open class <%= type.mockName %>: <%= type.name %> {
+    public let _mockId: String?
+    public static weak var testCase: XCTestCase?
+    public private(set) weak var testCase: XCTestCase?
+
+    public init(_ testCase: XCTestCase, id: String? = nil) {
+        self.testCase = testCase
+        self._mockId = id
+    }
+  <%_ %><%# --------- GENERATE PROPERTIES STUBS --------- -%>
+  <%_ %><%_ for property in type.variables where property.annotations["skipStub"] == nil { -%>
+
+    // MARK: <%= property.name %>
+    // annotations: <%= property.annotations %>
+    public private(set) <%= property.isStatic ? "static" : "lazy" %> var _<%= property.name %> = PropertyStub<<%= property.unwrappedTypeName %>>(name: "<%= property.name %>", testCase)
+
+    public <%= property.isStatic ? "static " : "" %>var <%= property.name %>: <%= property.typeName %> {
+      <%_ if property.isMutable { -%>
+        get { _<%= property.name %>.<%= property.typeName.isOptional ? "_optionalValue" : "_value" %> }
+        set { _<%= property.name %>.<%= property.typeName.isOptional ? "_optionalValue" : "_value" %> = newValue }
+      <%_ } else { -%>
+        _<%= property.name %>.<%= property.typeName.isOptional ? "_optionalValue" : "_value" %>
+      <%_ } -%>
+    }
+  <%_ } -%>
+  <%_ %><%# --------- GENERATE METHODS STUBS --------- -%>
+  <%_ for method in type.methods where method.annotations["skipStub"] == nil { -%>
+
+    // MARK: <%= method.selectorName %>
+    // annotations: <%= method.annotations %>
+    <%_ let genericPlaceholders = method.genericPlaceholderTypeNames() -%>
+    public private(set) <%= method.isStatic ? "static" : "lazy" %> var <%= method.unambiguousName() %> = MethodStub<<%= method.methodStubGenericTypeArguments(genericPlaceholders) %>>(name: "<%= method.selectorName %>", testCase)
+
+    <%_ for (_, attributes) in method.attributes { -%>
+      <%_ for attribute in attributes { -%>
+    <%= attribute %>
+      <%_ } -%>
+    <%_ } -%>
+    public <%= method.isStatic ? "static " : "" %>func <%= method.name %><%= method.`throws` ? " throws" : "" %> -> <%= method.returnTypeName %> {
+        <%= method.call(genericPlaceholders) %>
+    }
+  <%_ } -%>
+  <%_ %><%# --------- GENERATE SUBSCRIPT STUBS --------- -%>
+  <%_ for subscrpt in type.subscripts where subscrpt.annotations["skipStub"] == nil { -%>
+    
+    // annotations: <%= subscrpt.annotations %>
+    public private(set) lazy var <%= subscrpt.unambiguousName("Get") %> = MethodStub<<%= tuple(from: subscrpt.parameters.map { $0.typeName.name }) %>, <%= subscrpt.returnTypeName %>>(name: "<%= subscrpt.selectorName("get") %>", testCase)
+    <%_ if subscrpt.isMutable { -%>
+    public private(set) lazy var <%= subscrpt.unambiguousName("Set") %> = MethodStub<<%= tuple(from: subscrpt.parameters.map { $0.typeName.name } + [subscrpt.returnTypeName.name]) %>, Void>(name: "<%= subscrpt.selectorName("set") %>", testCase)
+    <%_ } -%>
+    
+    public subscript(<%= subscrpt.parameters.map { $0.name + ": " + $0.typeName.name }.joined(separator: ", ") %>) -> <%= subscrpt.returnTypeName %> {
+        get <%= subscrpt.annotations["throws"] != nil ? "throws " : "" %>{
+            <%= subscrpt.callGet() %>
+        }
+        <%_ if subscrpt.isMutable { -%>
+        set {
+            <%= subscrpt.unambiguousName("Set") %>.callWith(arguments: <%= tuple(from: subscrpt.parameters.map { $0.name } + ["newValue"]) %>)
+        }
+        <%_ } -%>
+    }
+  <%_ } _%>
+    static func resetState() {
+    <%_ for property in type.staticVariables { -%>
+        _<%= property.name %>.reset()
+    <%_ } -%>
+    <%_ for method in type.staticMethods { -%>
+        <%= method.unambiguousName() %>.reset()
+    <%_ } -%>
+    }
+}
+
+// MARK: -
+<% } -%>
+<%
+func tuple<T>(from array: [T]) -> String {
+    if array.isEmpty {
+        return "()"
+    }
+    if array.count == 1 {
+        return String(describing: array[0])
+    }
+    let content = array.map { String(describing: $0) }.joined(separator: ", ")
+    return "(\(content))"
+}
+
+extension Type {
+    var mockName: String {
+        name.replacingOccurrences(of: "Protocol", with: "") + "Mock"
+    }
+}
+
+extension SourceryMethod {
+    //                    example \ stubNameMode:   default                     callName    full
+    // method(with number: Int, and text: String)   methodWithNumberAndText     method      methodWithNumberIntAndTextString
+    // method(number: Int, text: String)            methodNumberText            method      methodNumberIntTextString
+    // method(_ number: Int, text: String)          methodText                  method      methodNumberIntTextString
+    //
+    func unambiguousName() -> String {
+        if let stubName = annotations["stubName"] as? String {
+            return "_\(stubName)"
+        }
+        if annotations["stubNameMode"] as? String == "callName" {
+            return "_\(callName)"
+        }
+        return "_\(callName)" + parameters.compactMap { $0.unambiguousName() }.joined()
+    }
+  
+    func methodStubGenericTypeArguments(_ genericPlaceholders: [String]) -> String {
+        return tuple(from: parametersTypeNamesForMethodStub(genericPlaceholders)) + ", " + returnTypeNameForMethodStub(genericPlaceholders)
+    }
+    
+    func parametersTypeNamesForMethodStub(_ genericPlaceholders: [String]) -> [String] {
+        parameters.map { parameter in
+            let typename = parameter.typeName.unwrappedTypeName.replacingOccurrences(of: ".Type", with: "")
+            if genericPlaceholders.contains(typename) {
+                return parameter.typeName.isOptional ? "Any?" : "Any"
+            }
+            return parameter.typeName.name
+        }
+    }
+
+    func returnTypeNameForMethodStub(_ genericPlaceholders: [String]) -> String {
+        if unwrappedReturnTypeName == "Self" {
+            return definedInType?.mockName ?? "Self"
+        }
+        if genericPlaceholders.contains(unwrappedReturnTypeName) {
+            return "Any"
+        }
+        return unwrappedReturnTypeName
+    }
+    
+    // Sourcery doesn't provide generic placeholders of a method (e.g [A, B] for `method<A, B>(...)`)
+    func genericPlaceholderTypeNames() -> [String] {
+        shortName
+            .slice(from: "<", to: ">")?
+            .split(separator: ",")
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .map { $0.slice(to: ":") ?? $0 }
+            ?? []
+    }
+    
+    func call(_ genericPlaceholders: [String]) -> String {
+        var prefix = ""
+        var features = ""
+        if self.`throws` {
+            prefix.append("try ")
+            features.append("Throw")
+        }
+        if !returnTypeName.isVoid {
+            if isOptionalReturnType {
+                features.append("Optional")
+            }
+            features.append("ReturnValue")
+        }
+        return "\(prefix)\(unambiguousName()).callWith\(features)(arguments: \(tuple(from: parameters.map { $0.name })))\(callsiteReturnValueCast(genericPlaceholders))"
+    }
+    
+    func callsiteReturnValueCast(_ genericPlaceholders: [String]) -> String {
+        if unwrappedReturnTypeName == "Self" {
+            return isOptionalReturnType ? " as? Self" : " as! Self"
+        }
+        if genericPlaceholders.contains(unwrappedReturnTypeName) {
+            return isOptionalReturnType ? " as? \(unwrappedReturnTypeName)" : " as! \(unwrappedReturnTypeName)"
+        }
+        return ""
+    }
+}
+
+extension Subscript {
+    func unambiguousName(_ getOrSet: String) -> String {
+        let params = parameters.compactMap { $0.unambiguousName() }.joined().withUppercaseFirstCharacter
+        return "_subscript\(getOrSet)\(params)"
+    }
+    
+    func selectorName(_ getOrSet: String) -> String {
+        "\(getOrSet)[\(parameters.map { $0.name + ":" }.joined(separator: ", "))]"
+    }
+    
+    func callGet() -> String {
+        var prefix = ""
+        var features = ""
+        if annotations["throws"] != nil {
+            prefix.append("try ")
+            features.append("Throw")
+        }
+        if !returnTypeName.isVoid {
+            if isOptionalReturnType {
+                features.append("Optional")
+            }
+            features.append("ReturnValue")
+        }
+        return "\(prefix)\(unambiguousName("Get")).callWith\(features)(arguments: \(tuple(from: parameters.map { $0.name })))\(callsiteReturnValueCast())"
+    }
+    
+    func callsiteReturnValueCast() -> String {
+        if unwrappedReturnTypeName == "Self" {
+            return isOptionalReturnType ? " as? Self" : " as! Self"
+        }
+        return ""
+    }
+}
+
+extension MethodParameter {
+    func unambiguousName() -> String {
+        let label = argumentLabel?.withUppercaseFirstCharacter ?? ""
+    
+        if annotations["stubNameMode"] as? String == "full" {
+            if argumentLabel == name {
+                return label + typeName.name
+            }
+            return label + name.withUppercaseFirstCharacter + typeName.name
+        }
+        if argumentLabel == nil {
+            return ""
+        }
+        if argumentLabel == name {
+            return label
+        }
+        return label + name.withUppercaseFirstCharacter
+    }
+}
+
+extension String {
+    var withUppercaseFirstCharacter: String {
+        let firstCharacter = first?.uppercased() ?? ""
+        return firstCharacter + dropFirst(1)
+    }
+    func slice(from: String, to: String) -> String? {
+        guard let indexFrom = range(of: from)?.upperBound else { return nil }
+        guard let indexTo = self[indexFrom...].range(of: to)?.lowerBound else { return nil }
+        return String(self[indexFrom ..< indexTo])
+    }
+    func slice(to: String) -> String? {
+        guard let indexTo = range(of: ":")?.lowerBound else { return nil }
+        return String(self[..<indexTo])
+    }
+}
+-%>

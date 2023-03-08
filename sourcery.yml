@@ -1,0 +1,8 @@
+sources:
+  - YandexTranslate/
+templates:
+  - MockGen/Templates/
+output:
+  YandexTranslateTests/Mocks/Mocks.swift
+args:
+  autoMockableTestableImports: [YandexTranslate]
