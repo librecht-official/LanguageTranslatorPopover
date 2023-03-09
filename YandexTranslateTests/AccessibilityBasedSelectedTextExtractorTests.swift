@@ -21,7 +21,7 @@ final class AccessibilityBasedSelectedTextExtractorTests: XCTestCase {
         extractor = AccessibilityBasedSelectedTextExtractor(systemWide: systemWideMock)
     }
     
-    // MARK: selectedTextInfo
+    // MARK: - selectedTextInfo
 
     func testSelectedTextInfo_NoFocusedElement() async throws {
         // given

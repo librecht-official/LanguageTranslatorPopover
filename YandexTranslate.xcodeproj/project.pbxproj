@@ -22,6 +22,10 @@
 		F5863AD629B8A90D008109E4 /* NSPasteboardExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863AD529B8A90D008109E4 /* NSPasteboardExt.swift */; };
 		F5863AE129B8AC89008109E4 /* AccessibilityBasedSelectedTextExtractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863AE029B8AC89008109E4 /* AccessibilityBasedSelectedTextExtractorTests.swift */; };
 		F5863AEA29B9C17F008109E4 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863AE929B9C17F008109E4 /* Helpers.swift */; };
+		F5863AEC29B9C4A6008109E4 /* PasteboardBasedSelectedTextExtractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863AEB29B9C4A6008109E4 /* PasteboardBasedSelectedTextExtractorTests.swift */; };
+		F5863AEF29B9EC0B008109E4 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = F5863AEE29B9EC0B008109E4 /* SnapshotTesting */; };
+		F5863AF129BA04D4008109E4 /* CallLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863AF029BA04D4008109E4 /* CallLogger.swift */; };
+		F5863AF329BA0809008109E4 /* TaskExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863AF229BA0809008109E4 /* TaskExt.swift */; };
 		F595FD7229B596130052828F /* TranslationActivator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7129B596130052828F /* TranslationActivator.swift */; };
 		F595FD7529B596D00052828F /* AccessibilityUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7429B596D00052828F /* AccessibilityUIElement.swift */; };
 		F595FD7729B5971A0052828F /* UIElementAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7629B5971A0052828F /* UIElementAccessor.swift */; };
@@ -60,6 +64,9 @@
 		F5863AD529B8A90D008109E4 /* NSPasteboardExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPasteboardExt.swift; sourceTree = "<group>"; };
 		F5863AE029B8AC89008109E4 /* AccessibilityBasedSelectedTextExtractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityBasedSelectedTextExtractorTests.swift; sourceTree = "<group>"; };
 		F5863AE929B9C17F008109E4 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		F5863AEB29B9C4A6008109E4 /* PasteboardBasedSelectedTextExtractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardBasedSelectedTextExtractorTests.swift; sourceTree = "<group>"; };
+		F5863AF029BA04D4008109E4 /* CallLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallLogger.swift; sourceTree = "<group>"; };
+		F5863AF229BA0809008109E4 /* TaskExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskExt.swift; sourceTree = "<group>"; };
 		F595FD7129B596130052828F /* TranslationActivator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationActivator.swift; sourceTree = "<group>"; };
 		F595FD7429B596D00052828F /* AccessibilityUIElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityUIElement.swift; sourceTree = "<group>"; };
 		F595FD7629B5971A0052828F /* UIElementAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIElementAccessor.swift; sourceTree = "<group>"; };
@@ -81,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5863AEF29B9EC0B008109E4 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				F5863AE029B8AC89008109E4 /* AccessibilityBasedSelectedTextExtractorTests.swift */,
+				F5863AEB29B9C4A6008109E4 /* PasteboardBasedSelectedTextExtractorTests.swift */,
 				F5863AE829B9C16D008109E4 /* Infrastructure */,
 				F5863ACA29B77053008109E4 /* MockGen */,
 				F5863AD229B7720D008109E4 /* Mocks */,
@@ -140,6 +149,7 @@
 		F5863ACA29B77053008109E4 /* MockGen */ = {
 			isa = PBXGroup;
 			children = (
+				F5863AF029BA04D4008109E4 /* CallLogger.swift */,
 				F5863ACB29B77053008109E4 /* MethodStub.swift */,
 				F5863ACE29B77053008109E4 /* PropertyStub.swift */,
 				F5863ACC29B77053008109E4 /* Templates */,
@@ -168,6 +178,7 @@
 			children = (
 				F595FD7A29B5ADA00052828F /* NSEventExt.swift */,
 				F5863AD529B8A90D008109E4 /* NSPasteboardExt.swift */,
+				F5863AF229BA0809008109E4 /* TaskExt.swift */,
 			);
 			path = NSExtensions;
 			sourceTree = "<group>";
@@ -235,6 +246,7 @@
 			);
 			name = YandexTranslateTests;
 			packageProductDependencies = (
+				F5863AEE29B9EC0B008109E4 /* SnapshotTesting */,
 			);
 			productName = YandexTranslateTests;
 			productReference = F5863AB429B7605F008109E4 /* YandexTranslateTests.xctest */;
@@ -269,6 +281,7 @@
 			);
 			mainGroup = F548442729B46BF40068946C;
 			packageReferences = (
+				F5863AED29B9EC0B008109E4 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = F548443129B46BF40068946C /* Products */;
 			projectDirPath = "";
@@ -310,6 +323,7 @@
 				F595FD7929B5ABE10052828F /* AccessibilityErrors.swift in Sources */,
 				F5863AAF29B735B6008109E4 /* main.swift in Sources */,
 				F548443629B46BF40068946C /* OnboardingViewController.swift in Sources */,
+				F5863AF329BA0809008109E4 /* TaskExt.swift in Sources */,
 				F595FD7729B5971A0052828F /* UIElementAccessor.swift in Sources */,
 				F595FD7F29B5B0B70052828F /* TranslatorWebViewController.swift in Sources */,
 				F595FD7229B596130052828F /* TranslationActivator.swift in Sources */,
@@ -331,6 +345,8 @@
 				F5863ACF29B77053008109E4 /* MethodStub.swift in Sources */,
 				F5863AEA29B9C17F008109E4 /* Helpers.swift in Sources */,
 				F5863AD429B7720D008109E4 /* Mocks.swift in Sources */,
+				F5863AEC29B9C4A6008109E4 /* PasteboardBasedSelectedTextExtractorTests.swift in Sources */,
+				F5863AF129BA04D4008109E4 /* CallLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +604,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F5863AED29B9EC0B008109E4 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F5863AEE29B9EC0B008109E4 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5863AED29B9EC0B008109E4 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F548442829B46BF40068946C /* Project object */;
 }

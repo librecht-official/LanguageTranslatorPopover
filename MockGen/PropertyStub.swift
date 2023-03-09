@@ -52,10 +52,12 @@ public final class PropertyStub<Value> {
                 fatalError()
             }
             getCallCount += 1
+            callLogger?.log(function: "get \(name)", nil)
             return val
         }
         set {
             setCallCount += 1
+            callLogger?.log(function: "set \(name)", nil)
             stubValue = newValue
         }
     }
@@ -66,13 +68,18 @@ public final class PropertyStub<Value> {
     var _optionalValue: Value? {
         get {
             getCallCount += 1
+            callLogger?.log(function: "get \(name)", nil)
             return stubValue
         }
         set {
             setCallCount += 1
+            callLogger?.log(function: "set \(name)", nil)
             stubValue = newValue
         }
     }
+    
+    /// Logger for method calls
+    private weak var callLogger: CallLogger?
     
     private let name: StaticString
     private weak var testCase: XCTestCase?
@@ -83,18 +90,28 @@ public final class PropertyStub<Value> {
     }
 }
 
+// MARK: - Call logging
+
+public extension PropertyStub {
+    @discardableResult
+    func addLogger(_ logger: CallLogger) -> Self {
+        callLogger = logger
+        return self
+    }
+}
+
 // MARK: - Asserting
 
 extension PropertyStub {
     @discardableResult
-    func wasGot(_ expectedCallCount: Int, file: StaticString = #filePath, line: UInt = #line) -> Self {
-        XCTAssertEqual(getCallCount, expectedCallCount, "Property \(name) was got \(getCallCount) times, expected: \(expectedCallCount)", file: file, line: line)
+    func wasGet(_ expectedCallCount: Int, file: StaticString = #filePath, line: UInt = #line) -> Self {
+        XCTAssertEqual(getCallCount, expectedCallCount, "Property \(name) has been accessed \(getCallCount) times, expected: \(expectedCallCount)", file: file, line: line)
         return self
     }
     
     @discardableResult
     func wasSet(_ expectedCallCount: Int, file: StaticString = #filePath, line: UInt = #line) -> Self {
-        XCTAssertEqual(setCallCount, expectedCallCount, "Property \(name) was set \(setCallCount) times, expected: \(expectedCallCount)", file: file, line: line)
+        XCTAssertEqual(setCallCount, expectedCallCount, "Property \(name) has been mutated \(setCallCount) times, expected: \(expectedCallCount)", file: file, line: line)
         return self
     }
     

@@ -45,16 +45,20 @@ struct AccessibilityBasedSelectedTextExtractor: SelectedTextExtracting {
 // MARK: - Using Cmd+C & Pasteboard
 
 // Works for application with non-accessable UI (e.g. electron-based) Visual Studio Code and Sublime Text
-struct PasteboardBasedSelectedTextExtractor: SelectedTextExtracting {
+typealias PasteboardBasedSelectedTextExtractor = _PasteboardBasedSelectedTextExtractor<CGEvent, _Concurrency.Task<Never, Never>>
+
+struct _PasteboardBasedSelectedTextExtractor<Event: SystemEvent, Task: TaskProtocol>: SelectedTextExtracting {
     let pasteboard: NSPasteboardProtocol
+    let eventDispatcher: SystemEventDispatching
     
-    init(pasteboard: NSPasteboardProtocol = NSPasteboard.general) {
+    init(pasteboard: NSPasteboardProtocol = NSPasteboard.general, eventDispatcher: SystemEventDispatching = SystemEventDispatcher()) {
         self.pasteboard = pasteboard
+        self.eventDispatcher = eventDispatcher
     }
     
     func selectedTextInfo() async throws -> SelectedTextInfo {
         let originalData = pasteboard.data(forType: .string)
-
+        
         performCopyShortcut()
         try await Task.sleep(nanoseconds: 100_000_000)
         let result = pasteboard.string(forType: .string)
@@ -70,23 +74,13 @@ struct PasteboardBasedSelectedTextExtractor: SelectedTextExtracting {
     
     private func performCopyShortcut() {
         let cmdC = [
-            key(kVK_Command, .down, .maskCommand),
-            key(kVK_ANSI_C, .down, .maskCommand),
-            key(kVK_ANSI_C, .up, .maskCommand),
-            key(kVK_Command, .up, []),
+            Event.key(kVK_Command, down: true, .maskCommand),
+            Event.key(kVK_ANSI_C, down: true, .maskCommand),
+            Event.key(kVK_ANSI_C, down: false, .maskCommand),
+            Event.key(kVK_Command, down: false, []),
         ]
         cmdC.forEach { event in
-            event?.post(tap: .cghidEventTap)
+            eventDispatcher.post(event: event, tap: .cghidEventTap)
         }
-    }
-    
-    private enum KeystrokeDirection {
-        case up, down
-    }
-    
-    private func key(_ keyCode: Int, _ direction: KeystrokeDirection, _ flags: CGEventFlags) -> CGEvent? {
-        let event = CGEvent(keyboardEventSource: nil, virtualKey: CGKeyCode(keyCode), keyDown: direction == .down)
-        event?.flags = flags
-        return event
     }
 }

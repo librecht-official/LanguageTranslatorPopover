@@ -42,6 +42,9 @@ public final class MethodStub<Arguments, ReturnValue> {
     /// Number of times the method was called
     public private(set) var callCount: Int = 0
     
+    /// Logger for method calls
+    private weak var callLogger: CallLogger?
+    
     public func reset() {
         argumentsHistory = []
         callCount = 0
@@ -53,6 +56,16 @@ public final class MethodStub<Arguments, ReturnValue> {
     public init(name: StaticString, _ testCase: XCTestCase?) {
         self.name = name
         self.testCase = testCase
+    }
+}
+
+// MARK: - Call logging
+
+public extension MethodStub {
+    @discardableResult
+    func addLogger(_ logger: CallLogger) -> Self {
+        callLogger = logger
+        return self
     }
 }
 
@@ -101,16 +114,15 @@ public extension MethodStub {
 
 public extension MethodStub {
     func callWith(arguments: Arguments) {
-        callCount += 1
-        argumentsHistory.append(arguments)
+        registerCall(with: arguments)
+        
         do {
             _ = try body?(arguments)
         } catch {}
     }
     
     func callWithReturnValue(arguments: Arguments, filePath: StaticString = #filePath, line: UInt = #line) -> ReturnValue {
-        callCount += 1
-        argumentsHistory.append(arguments)
+        registerCall(with: arguments)
         
         var returnedValue: ReturnValue?
         do {
@@ -127,8 +139,7 @@ public extension MethodStub {
     }
     
     func callWithOptionalReturnValue(arguments: Arguments) -> ReturnValue? {
-        callCount += 1
-        argumentsHistory.append(arguments)
+        registerCall(with: arguments)
         
         var returnedValue: ReturnValue?
         do {
@@ -139,8 +150,7 @@ public extension MethodStub {
     }
     
     func callWithThrow(arguments: Arguments) throws {
-        callCount += 1
-        argumentsHistory.append(arguments)
+        registerCall(with: arguments)
         
         if let body = body {
             _ = try body(arguments)
@@ -150,8 +160,7 @@ public extension MethodStub {
     }
     
     func callWithThrowReturnValue(arguments: Arguments, filePath: StaticString = #filePath, line: UInt = #line) throws -> ReturnValue {
-        callCount += 1
-        argumentsHistory.append(arguments)
+        registerCall(with: arguments)
         
         var returnedValue: ReturnValue?
         
@@ -171,8 +180,7 @@ public extension MethodStub {
     }
     
     func callWithThrowOptionalReturnValue(arguments: Arguments) throws -> ReturnValue? {
-        callCount += 1
-        argumentsHistory.append(arguments)
+        registerCall(with: arguments)
         
         var returnedValue: ReturnValue?
         
@@ -183,5 +191,11 @@ public extension MethodStub {
         }
         
         return returnedValue ?? returnValue
+    }
+    
+    private func registerCall(with arguments: Arguments) {
+        callCount += 1
+        argumentsHistory.append(arguments)
+        callLogger?.log(function: name, arguments)
     }
 }

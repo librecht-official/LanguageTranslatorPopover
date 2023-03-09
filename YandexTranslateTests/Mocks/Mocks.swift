@@ -59,6 +59,138 @@ open class AccessibilityUIElementMock: AccessibilityUIElement {
 
 // MARK: -
 
+open class NSPasteboardMock: NSPasteboardProtocol {
+    public let _mockId: String?
+    public static weak var testCase: XCTestCase?
+    public private(set) weak var testCase: XCTestCase?
+
+    public init(_ testCase: XCTestCase, id: String? = nil) {
+        self.testCase = testCase
+        self._mockId = id
+    }
+
+    // MARK: data(forType:)
+    // annotations: ["stubName": dataForType]
+    public private(set) lazy var _dataForType = MethodStub<NSPasteboard.PasteboardType, Data>(name: "data(forType:)", testCase)
+
+    public func data(forType dataType: NSPasteboard.PasteboardType) -> Data? {
+        _dataForType.callWithOptionalReturnValue(arguments: dataType)
+    }
+
+    // MARK: string(forType:)
+    // annotations: ["stubName": stringForType]
+    public private(set) lazy var _stringForType = MethodStub<NSPasteboard.PasteboardType, String>(name: "string(forType:)", testCase)
+
+    public func string(forType dataType: NSPasteboard.PasteboardType) -> String? {
+        _stringForType.callWithOptionalReturnValue(arguments: dataType)
+    }
+
+    // MARK: prepareForNewContents
+    // annotations: [:]
+    public private(set) lazy var _prepareForNewContents = MethodStub<(), Int>(name: "prepareForNewContents", testCase)
+
+    @discardableResult
+    public func prepareForNewContents() -> Int {
+        _prepareForNewContents.callWithReturnValue(arguments: ())
+    }
+
+    // MARK: setData(_:forType:)
+    // annotations: ["stubName": setDataForType]
+    public private(set) lazy var _setDataForType = MethodStub<(Data?, NSPasteboard.PasteboardType), Bool>(name: "setData(_:forType:)", testCase)
+
+    @discardableResult
+    public func setData(_ data: Data?, forType dataType: NSPasteboard.PasteboardType) -> Bool {
+        _setDataForType.callWithReturnValue(arguments: (data, dataType))
+    }
+
+    static func resetState() {
+    }
+}
+
+// MARK: -
+
+open class SystemEventMock: SystemEvent {
+    public let _mockId: String?
+    public static weak var testCase: XCTestCase?
+    public private(set) weak var testCase: XCTestCase?
+
+    public init(_ testCase: XCTestCase, id: String? = nil) {
+        self.testCase = testCase
+        self._mockId = id
+    }
+
+    // MARK: key(_:down:_:)
+    // annotations: [:]
+    public private(set) static var _keyDown = MethodStub<(Int, Bool, CGEventFlags), SystemEventMock>(name: "key(_:down:_:)", testCase)
+
+    public static func key(_ keyCode: Int, down: Bool, _ flags: CGEventFlags) -> Self? {
+        _keyDown.callWithOptionalReturnValue(arguments: (keyCode, down, flags)) as? Self
+    }
+
+    // MARK: post(tap:)
+    // annotations: [:]
+    public private(set) lazy var _postTap = MethodStub<CGEventTapLocation, Void>(name: "post(tap:)", testCase)
+
+    public func post(tap: CGEventTapLocation) -> Void {
+        _postTap.callWith(arguments: tap)
+    }
+
+    static func resetState() {
+        _keyDown.reset()
+    }
+}
+
+// MARK: -
+
+open class SystemEventDispatchingMock: SystemEventDispatching {
+    public let _mockId: String?
+    public static weak var testCase: XCTestCase?
+    public private(set) weak var testCase: XCTestCase?
+
+    public init(_ testCase: XCTestCase, id: String? = nil) {
+        self.testCase = testCase
+        self._mockId = id
+    }
+
+    // MARK: post(event:tap:)
+    // annotations: [:]
+    public private(set) lazy var _postEventTap = MethodStub<(Any?, CGEventTapLocation), Void>(name: "post(event:tap:)", testCase)
+
+    public func post<Event: SystemEvent>(event: Event?, tap: CGEventTapLocation) -> Void {
+        _postEventTap.callWith(arguments: (event, tap))
+    }
+
+    static func resetState() {
+    }
+}
+
+// MARK: -
+
+open class TaskMock: TaskProtocol {
+    public let _mockId: String?
+    public static weak var testCase: XCTestCase?
+    public private(set) weak var testCase: XCTestCase?
+
+    public init(_ testCase: XCTestCase, id: String? = nil) {
+        self.testCase = testCase
+        self._mockId = id
+    }
+
+    // MARK: sleep(nanoseconds:)
+    // annotations: [:]
+    public private(set) static var _sleepNanoseconds = MethodStub<UInt64, Void>(name: "sleep(nanoseconds:)", testCase)
+
+    public static func sleep(nanoseconds: UInt64) throws -> Void {
+        try _sleepNanoseconds.callWithThrow(arguments: nanoseconds)
+    }
+
+    static func resetState() {
+        _sleepNanoseconds.reset()
+    }
+}
+
+// MARK: -
+
 open class UIElementAccessingMock: UIElementAccessing {
     public let _mockId: String?
     public static weak var testCase: XCTestCase?
