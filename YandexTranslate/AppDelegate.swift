@@ -2,8 +2,10 @@
 //
 
 import Cocoa
+import AVFoundation
 
 class AppDelegate: NSObject, NSApplicationDelegate {
+    let notificationCenter = DI(NotificationCenter.default)
     var onboardingWindowController: NSWindowController?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -14,10 +16,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         onboardingWindowController = NSStoryboard(name: "Main", bundle: nil).instantiateInitialController() as? NSWindowController
         onboardingWindowController?.window?.setContentSize(NSSize(width: 480, height: 270))
         onboardingWindowController?.showWindow(nil)
+        
+#if DEBUG
+        notificationCenter.post(name: .YTShowTranslatorPopover, object: nil)
+#endif
     }
 
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-        onboardingWindowController?.showWindow(sender)
+        notificationCenter.post(name: .YTShowTranslatorPopover, object: nil)
         return true
     }
 }

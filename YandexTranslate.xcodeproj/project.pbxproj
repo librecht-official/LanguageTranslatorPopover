@@ -33,6 +33,8 @@
 		F595FD7B29B5ADA00052828F /* NSEventExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7A29B5ADA00052828F /* NSEventExt.swift */; };
 		F595FD7D29B5AF1E0052828F /* TranslatorViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7C29B5AF1E0052828F /* TranslatorViewCoordinator.swift */; };
 		F595FD7F29B5B0B70052828F /* TranslatorWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7E29B5B0B70052828F /* TranslatorWebViewController.swift */; };
+		F5D10AA82CE7E5800075B51E /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D10AA72CE7E5800075B51E /* Environment.swift */; };
+		F5D10AAA2CE7E5B60075B51E /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D10AA92CE7E5B60075B51E /* Scope.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,8 @@
 		F595FD7A29B5ADA00052828F /* NSEventExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSEventExt.swift; sourceTree = "<group>"; };
 		F595FD7C29B5AF1E0052828F /* TranslatorViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorViewCoordinator.swift; sourceTree = "<group>"; };
 		F595FD7E29B5B0B70052828F /* TranslatorWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorWebViewController.swift; sourceTree = "<group>"; };
+		F5D10AA72CE7E5800075B51E /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		F5D10AA92CE7E5B60075B51E /* Scope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scope.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,8 +123,10 @@
 			children = (
 				F548443C29B46BF60068946C /* YandexTranslate.entitlements */,
 				F548443329B46BF40068946C /* AppDelegate.swift */,
+				F5D10AA72CE7E5800075B51E /* Environment.swift */,
 				F5863AAE29B735B6008109E4 /* main.swift */,
 				F548443529B46BF40068946C /* OnboardingViewController.swift */,
+				F5D10AA92CE7E5B60075B51E /* Scope.swift */,
 				F5863AA829B72635008109E4 /* SelectedTextExtracting.swift */,
 				F595FD7129B596130052828F /* TranslationActivator.swift */,
 				F595FD7C29B5AF1E0052828F /* TranslatorViewCoordinator.swift */,
@@ -320,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5863AA929B72635008109E4 /* SelectedTextExtracting.swift in Sources */,
+				F5D10AA82CE7E5800075B51E /* Environment.swift in Sources */,
 				F595FD7929B5ABE10052828F /* AccessibilityErrors.swift in Sources */,
 				F5863AAF29B735B6008109E4 /* main.swift in Sources */,
 				F548443629B46BF40068946C /* OnboardingViewController.swift in Sources */,
@@ -333,6 +340,7 @@
 				F595FD7D29B5AF1E0052828F /* TranslatorViewCoordinator.swift in Sources */,
 				F5863AAB29B72B67008109E4 /* UIElementAttributeName.swift in Sources */,
 				F5863AD629B8A90D008109E4 /* NSPasteboardExt.swift in Sources */,
+				F5D10AAA2CE7E5B60075B51E /* Scope.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,12 +507,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Yandex Translate";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Microphone is required for voice input";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.librekht.YandexTranslate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -526,12 +535,13 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Yandex Translate";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Microphone is required for voice input";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.librekht.YandexTranslate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

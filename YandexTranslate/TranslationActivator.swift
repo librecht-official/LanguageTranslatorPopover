@@ -8,6 +8,7 @@ typealias TranslationActivator = _TranslationActivator<NSEvent>
 
 @MainActor
 final class _TranslationActivator<Monitor: GlobalMonitoring> {
+    let notificationCenter = DI(NotificationCenter.default)
     let selectedTextExtractors: [SelectedTextExtracting]
     let coordinator: TranslatorViewCoordinating
     
@@ -27,16 +28,17 @@ final class _TranslationActivator<Monitor: GlobalMonitoring> {
                 }
             }
         }
+        notificationCenter.addObserver(self, selector: #selector(showTranslatorView), name: .YTShowTranslatorPopover, object: nil)
+    }
+    
+    @objc private func showTranslatorView() {
+        coordinator.showPopover(text: "", textFrame: nil)
     }
     
     private func findSelectedTextAndRunTranslator() async {
-        if let info = await findSelectedText() {
-            print("Selected text: \(info)")
-            coordinator.showPopover(text: info.text, textFrame: info.textFrame)
-        }
-        else {
-            print("No selected text found")
-        }
+        let info = await findSelectedText()
+        print("Selected text: \(String(describing: info))")
+        coordinator.showPopover(text: info?.text ?? "", textFrame: info?.textFrame)
     }
     
     private func findSelectedText() async -> SelectedTextInfo? {
@@ -50,4 +52,8 @@ final class _TranslationActivator<Monitor: GlobalMonitoring> {
         }
         return nil
     }
+}
+
+extension NSNotification.Name {
+    static let YTShowTranslatorPopover = NSNotification.Name("YTShowTranslatorPopover")
 }
