@@ -3,14 +3,17 @@
 //
 
 public final class CallLogger {
-    public private(set) var records: String = ""
+    public private(set) var records: [String] = []
     private var counter: Int = 0
     
     public init() {
     }
     
-    public func log(function: CustomStringConvertible, _ input: Any?) {
-        records.append("\(counter). \(function)\n")
-        counter += 1
+//    public func log(function: CustomStringConvertible, _ input: Any?) {
+//        records.append("\(function)")
+//    }
+    
+    func log(_ message: String) {
+        records.append(message)
     }
 }

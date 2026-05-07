@@ -7,6 +7,38 @@
 import XCTest
 @testable import YandexTranslate
 
+open class AccessibilityAPIMock: AccessibilityAPI {
+    public let _mockId: String?
+    public static weak var testCase: XCTestCase?
+    public private(set) weak var testCase: XCTestCase?
+
+    public init(_ testCase: XCTestCase, id: String? = nil) {
+        self.testCase = testCase
+        self._mockId = id
+    }
+
+    // MARK: isProcessTrusted
+    // annotations: [:]
+    public private(set) lazy var _isProcessTrusted = MethodStub<(), Bool>(name: "isProcessTrusted", testCase)
+
+    public func isProcessTrusted() -> Bool {
+        _isProcessTrusted.callWithReturnValue(arguments: ())
+    }
+
+    // MARK: isProcessTrusted(with:)
+    // annotations: [:]
+    public private(set) lazy var _isProcessTrustedWithOptions = MethodStub<CFDictionary?, Bool>(name: "isProcessTrusted(with:)", testCase)
+
+    public func isProcessTrusted(with options: CFDictionary?) -> Bool {
+        _isProcessTrustedWithOptions.callWithReturnValue(arguments: options)
+    }
+
+    static func resetState() {
+    }
+}
+
+// MARK: -
+
 open class AccessibilityUIElementMock: AccessibilityUIElement {
     public let _mockId: String?
     public static weak var testCase: XCTestCase?
@@ -54,6 +86,32 @@ open class AccessibilityUIElementMock: AccessibilityUIElement {
     }
 
     static func resetState() {
+    }
+}
+
+// MARK: -
+
+open class GlobalMonitoringMock: GlobalMonitoring {
+    public let _mockId: String?
+    public static weak var testCase: XCTestCase?
+    public private(set) weak var testCase: XCTestCase?
+
+    public init(_ testCase: XCTestCase, id: String? = nil) {
+        self.testCase = testCase
+        self._mockId = id
+    }
+
+    // MARK: addGlobalMonitorForEvents(matching:handler:)
+    // annotations: ["stubNameMode": callName]
+    public private(set) static var _addGlobalMonitorForEvents = MethodStub<(NSEvent.EventTypeMask, (NSEvent) -> Void), Any>(name: "addGlobalMonitorForEvents(matching:handler:)", testCase)
+
+    @discardableResult
+    public static func addGlobalMonitorForEvents(matching mask: NSEvent.EventTypeMask, handler block: @escaping (NSEvent) -> Void) -> Any? {
+        _addGlobalMonitorForEvents.callWithOptionalReturnValue(arguments: (mask, block))
+    }
+
+    static func resetState() {
+        _addGlobalMonitorForEvents.reset()
     }
 }
 
@@ -186,6 +244,54 @@ open class TaskMock: TaskProtocol {
 
     static func resetState() {
         _sleepNanoseconds.reset()
+    }
+}
+
+// MARK: -
+
+open class TerminatesAppMock: TerminatesApp {
+    public let _mockId: String?
+    public static weak var testCase: XCTestCase?
+    public private(set) weak var testCase: XCTestCase?
+
+    public init(_ testCase: XCTestCase, id: String? = nil) {
+        self.testCase = testCase
+        self._mockId = id
+    }
+
+    // MARK: terminate(_:)
+    // annotations: [:]
+    public private(set) lazy var _terminate = MethodStub<Any?, Void>(name: "terminate(_:)", testCase)
+
+    public func terminate(_ sender: Any?) -> Void {
+        _terminate.callWith(arguments: sender)
+    }
+
+    static func resetState() {
+    }
+}
+
+// MARK: -
+
+open class TranslationActivatingMock: TranslationActivating {
+    public let _mockId: String?
+    public static weak var testCase: XCTestCase?
+    public private(set) weak var testCase: XCTestCase?
+
+    public init(_ testCase: XCTestCase, id: String? = nil) {
+        self.testCase = testCase
+        self._mockId = id
+    }
+
+    // MARK: start
+    // annotations: [:]
+    public private(set) lazy var _start = MethodStub<(), Void>(name: "start", testCase)
+
+    public func start() -> Void {
+        _start.callWith(arguments: ())
+    }
+
+    static func resetState() {
     }
 }
 

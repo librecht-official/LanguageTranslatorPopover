@@ -2,10 +2,9 @@
 //
 
 import Cocoa
-import AVFoundation
 
 class AppDelegate: NSObject, NSApplicationDelegate {
-    let notificationCenter = DI(NotificationCenter.default)
+    let notificationCenter = NotificationCenter.default
     var onboardingWindowController: NSWindowController?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -18,7 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         onboardingWindowController?.showWindow(nil)
         
 #if DEBUG
-        notificationCenter.post(name: .YTShowTranslatorPopover, object: nil)
+//        notificationCenter.post(name: .YTShowTranslatorPopover, object: nil)
 #endif
     }
 
@@ -27,3 +26,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
 }
+
+//import Carbon
+//
+//class TestAppDelegate: NSObject, NSApplicationDelegate {
+//    let notificationCenter = NotificationCenter.default
+//    var translationActivator: TranslationActivator?
+//    
+//    func applicationDidFinishLaunching(_ aNotification: Notification) {
+//        translationActivator = TranslationActivator(selectedTextExtractors: [
+//            SelectedTextExtractingMock()
+//        ])
+//        translationActivator?.start()
+//        CGEvent.key(kVK_ANSI_Z, down: true, .maskControl)?.post(tap: .cghidEventTap)
+//        CGEvent.key(kVK_ANSI_Z, down: false, .maskControl)?.post(tap: .cghidEventTap)
+////        notificationCenter.post(name: .YTShowTranslatorPopover, object: nil)
+//    }
+//}

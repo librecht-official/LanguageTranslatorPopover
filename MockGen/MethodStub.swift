@@ -196,6 +196,6 @@ public extension MethodStub {
     private func registerCall(with arguments: Arguments) {
         callCount += 1
         argumentsHistory.append(arguments)
-        callLogger?.log(function: name, arguments)
+        callLogger?.log("call \(name)")
     }
 }

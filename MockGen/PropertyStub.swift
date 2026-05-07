@@ -47,17 +47,18 @@ public final class PropertyStub<Value> {
     var _value: Value {
         get {
             guard let val = stubValue else {
+                // TODO: Invent smth better
                 testCase?.continueAfterFailure = false
                 XCTFail("Uninitialized property getter (\(name)) was called.")
                 fatalError()
             }
             getCallCount += 1
-            callLogger?.log(function: "get \(name)", nil)
+            callLogger?.log("get \(name)")
             return val
         }
         set {
             setCallCount += 1
-            callLogger?.log(function: "set \(name)", nil)
+            callLogger?.log("set \(name)")
             stubValue = newValue
         }
     }
@@ -68,12 +69,12 @@ public final class PropertyStub<Value> {
     var _optionalValue: Value? {
         get {
             getCallCount += 1
-            callLogger?.log(function: "get \(name)", nil)
+            callLogger?.log("get \(name)")
             return stubValue
         }
         set {
             setCallCount += 1
-            callLogger?.log(function: "set \(name)", nil)
+            callLogger?.log("set \(name) to \(newValue.asString)")
             stubValue = newValue
         }
     }
@@ -87,6 +88,12 @@ public final class PropertyStub<Value> {
     public init(name: StaticString, _ testCase: XCTestCase?) {
         self.name = name
         self.testCase = testCase
+    }
+}
+
+extension Optional {
+    var asString: String {
+        map { "\($0)" } ?? "nil"
     }
 }
 
@@ -111,7 +118,7 @@ extension PropertyStub {
     
     @discardableResult
     func wasSet(_ expectedCallCount: Int, file: StaticString = #filePath, line: UInt = #line) -> Self {
-        XCTAssertEqual(setCallCount, expectedCallCount, "Property \(name) has been mutated \(setCallCount) times, expected: \(expectedCallCount)", file: file, line: line)
+        XCTAssert(setCallCount == expectedCallCount, "Property \(name) has been set \(setCallCount) times, expected: \(expectedCallCount)", file: file, line: line)
         return self
     }
     

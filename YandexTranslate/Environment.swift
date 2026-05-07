@@ -4,26 +4,16 @@
 
 import Foundation
 
+// TODO: Delete?
 enum Environment {
-    static var isTest = false
-}
-
-// MARK: - DispatchSourceTimer
-
-extension Environment {
-    static var dsTimerMock: DispatchSourceTimer!
-}
-
-func DI(_ declared: DispatchSourceTimer) -> DispatchSourceTimer {
-    Environment.isTest ? Environment.dsTimerMock : declared
-}
-
-// MARK: - NotificationCenter
-
-extension Environment {
-    static var notificationCenterMock: NotificationCenter!
-}
-
-func DI(_ declared: NotificationCenter) -> NotificationCenter {
-    Environment.isTest ? Environment.notificationCenterMock : declared
+    static var isTest: Bool {
+        if let result = _isTest {
+            return result
+        }
+        let isRunningUnitTests = NSClassFromString("XCTest") != nil
+        let result = isRunningUnitTests || ProcessInfo.processInfo.arguments.contains("test")
+        _isTest = result
+        return result
+    }
+    private static var _isTest: Bool?
 }

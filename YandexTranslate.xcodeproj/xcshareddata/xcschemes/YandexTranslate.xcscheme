@@ -27,7 +27,17 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "F548442F29B46BF40068946C"
+            BuildableName = "YandexTranslate.app"
+            BlueprintName = "YandexTranslate"
+            ReferencedContainer = "container:YandexTranslate.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO"
@@ -37,6 +47,17 @@
                BlueprintIdentifier = "F5863AB329B7605F008109E4"
                BuildableName = "YandexTranslateTests.xctest"
                BlueprintName = "YandexTranslateTests"
+               ReferencedContainer = "container:YandexTranslate.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F5D10AB02CE9698E0075B51E"
+               BuildableName = "YandexTranslateUITests.xctest"
+               BlueprintName = "YandexTranslateUITests"
                ReferencedContainer = "container:YandexTranslate.xcodeproj">
             </BuildableReference>
          </TestableReference>

@@ -3,8 +3,10 @@
 
 import AppKit
 
+// sourcery: AutoMockable
 protocol GlobalMonitoring {
     @discardableResult
+    // sourcery: stubNameMode = "callName"
     static func addGlobalMonitorForEvents(matching mask: NSEvent.EventTypeMask, handler block: @escaping (NSEvent) -> Void) -> Any?
 }
 

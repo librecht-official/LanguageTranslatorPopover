@@ -39,6 +39,17 @@
                ReferencedContainer = "container:YandexTranslate.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F5D10AB02CE9698E0075B51E"
+               BuildableName = "YandexTranslateUITests.xctest"
+               BlueprintName = "YandexTranslateUITests"
+               ReferencedContainer = "container:YandexTranslate.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

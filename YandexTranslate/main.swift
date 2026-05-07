@@ -3,6 +3,7 @@
 
 import Cocoa
 
+//let delegate: NSApplicationDelegate = ProcessInfo.processInfo.arguments.contains("test") ? TestAppDelegate() : AppDelegate()
 let delegate = AppDelegate()
 NSApplication.shared.delegate = delegate
 

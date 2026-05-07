@@ -3,23 +3,30 @@
 
 import Cocoa
 
+@MainActor
 protocol TranslatorViewCoordinating {
     func showPopover(text: String, textFrame: CGRect?)
 }
 
+@MainActor
 final class TranslatorViewCoordinator: NSObject, TranslatorViewCoordinating {
     // Panel displayed over selected text as a popover anchor
-    let panel = NSPanel(contentRect: .zero, styleMask: .borderless, backing: .buffered, defer: true)// `defer: true` somehow (maybe in combination with other settings) allows to show window over apps in fullscreen mode
+    let panel = NSPanel(
+        contentRect: .zero,
+        styleMask: [.borderless, .utilityWindow, .nonactivatingPanel, .fullSizeContentView],
+        backing: .buffered,
+        defer: true
+    )
     let panelController: NSWindowController
     let popoverContent = TranslatorWebViewController()
     let popover = NSPopover()
     
     override init() {
+        panel.setAccessibilityIdentifier("translator_panel")
         panel.backgroundColor = .clear
         panel.animationBehavior = .none
         panel.collectionBehavior = [.transient, .canJoinAllSpaces, .fullScreenAuxiliary, .ignoresCycle]
         panel.isFloatingPanel = true
-        panel.styleMask = [.borderless, .utilityWindow, .nonactivatingPanel, .fullSizeContentView]
         panel.becomesKeyOnlyIfNeeded = true
         
         panelController = NSWindowController(window: panel)

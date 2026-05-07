@@ -11,6 +11,9 @@
 		F548443629B46BF40068946C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F548443529B46BF40068946C /* OnboardingViewController.swift */; };
 		F548443829B46BF60068946C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F548443729B46BF60068946C /* Assets.xcassets */; };
 		F548443B29B46BF60068946C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F548443929B46BF60068946C /* Main.storyboard */; };
+		F56A52DA2CF5DDBD008EF5EA /* NSApplicationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56A52D92CF5DDBD008EF5EA /* NSApplicationExt.swift */; };
+		F56A52DC2CF5DDE6008EF5EA /* AccessibilityAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56A52DB2CF5DDE6008EF5EA /* AccessibilityAPI.swift */; };
+		F56A52DF2CF7228D008EF5EA /* TranslatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56A52DE2CF7228D008EF5EA /* TranslatorTests.swift */; };
 		F5863AA929B72635008109E4 /* SelectedTextExtracting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863AA829B72635008109E4 /* SelectedTextExtracting.swift */; };
 		F5863AAB29B72B67008109E4 /* UIElementAttributeName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5863AAA29B72B67008109E4 /* UIElementAttributeName.swift */; };
 		F5863AAD29B73465008109E4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5863AAC29B73465008109E4 /* MainMenu.xib */; };
@@ -35,10 +38,19 @@
 		F595FD7F29B5B0B70052828F /* TranslatorWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7E29B5B0B70052828F /* TranslatorWebViewController.swift */; };
 		F5D10AA82CE7E5800075B51E /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D10AA72CE7E5800075B51E /* Environment.swift */; };
 		F5D10AAA2CE7E5B60075B51E /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D10AA92CE7E5B60075B51E /* Scope.swift */; };
+		F5D10AAC2CE95DEA0075B51E /* OnboardingViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D10AAB2CE95DEA0075B51E /* OnboardingViewControllerTests.swift */; };
+		F5D10AB42CE9698E0075B51E /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D10AB32CE9698E0075B51E /* OnboardingUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		F5863AB829B7605F008109E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F548442829B46BF40068946C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F548442F29B46BF40068946C;
+			remoteInfo = YandexTranslate;
+		};
+		F5D10AB72CE9698E0075B51E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F548442829B46BF40068946C /* Project object */;
 			proxyType = 1;
@@ -54,6 +66,9 @@
 		F548443729B46BF60068946C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F548443A29B46BF60068946C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F548443C29B46BF60068946C /* YandexTranslate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YandexTranslate.entitlements; sourceTree = "<group>"; };
+		F56A52D92CF5DDBD008EF5EA /* NSApplicationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSApplicationExt.swift; sourceTree = "<group>"; };
+		F56A52DB2CF5DDE6008EF5EA /* AccessibilityAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityAPI.swift; sourceTree = "<group>"; };
+		F56A52DE2CF7228D008EF5EA /* TranslatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorTests.swift; sourceTree = "<group>"; };
 		F5863AA829B72635008109E4 /* SelectedTextExtracting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTextExtracting.swift; sourceTree = "<group>"; };
 		F5863AAA29B72B67008109E4 /* UIElementAttributeName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIElementAttributeName.swift; sourceTree = "<group>"; };
 		F5863AAC29B73465008109E4 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
@@ -78,6 +93,9 @@
 		F595FD7E29B5B0B70052828F /* TranslatorWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorWebViewController.swift; sourceTree = "<group>"; };
 		F5D10AA72CE7E5800075B51E /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		F5D10AA92CE7E5B60075B51E /* Scope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scope.swift; sourceTree = "<group>"; };
+		F5D10AAB2CE95DEA0075B51E /* OnboardingViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewControllerTests.swift; sourceTree = "<group>"; };
+		F5D10AB12CE9698E0075B51E /* YandexTranslateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YandexTranslateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5D10AB32CE9698E0075B51E /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +114,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F5D10AAE2CE9698E0075B51E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -104,6 +129,7 @@
 			children = (
 				F548443229B46BF40068946C /* YandexTranslate */,
 				F5863AB529B7605F008109E4 /* YandexTranslateTests */,
+				F5D10AB22CE9698E0075B51E /* YandexTranslateUITests */,
 				F548443129B46BF40068946C /* Products */,
 				F5863AE529B8C8E5008109E4 /* Frameworks */,
 			);
@@ -114,6 +140,7 @@
 			children = (
 				F548443029B46BF40068946C /* YandexTranslate.app */,
 				F5863AB429B7605F008109E4 /* YandexTranslateTests.xctest */,
+				F5D10AB12CE9698E0075B51E /* YandexTranslateUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,10 +167,20 @@
 			path = YandexTranslate;
 			sourceTree = "<group>";
 		};
+		F56A52DD2CF72268008EF5EA /* Integration */ = {
+			isa = PBXGroup;
+			children = (
+				F56A52DE2CF7228D008EF5EA /* TranslatorTests.swift */,
+			);
+			path = Integration;
+			sourceTree = "<group>";
+		};
 		F5863AB529B7605F008109E4 /* YandexTranslateTests */ = {
 			isa = PBXGroup;
 			children = (
+				F56A52DD2CF72268008EF5EA /* Integration */,
 				F5863AE029B8AC89008109E4 /* AccessibilityBasedSelectedTextExtractorTests.swift */,
+				F5D10AAB2CE95DEA0075B51E /* OnboardingViewControllerTests.swift */,
 				F5863AEB29B9C4A6008109E4 /* PasteboardBasedSelectedTextExtractorTests.swift */,
 				F5863AE829B9C16D008109E4 /* Infrastructure */,
 				F5863ACA29B77053008109E4 /* MockGen */,
@@ -185,6 +222,7 @@
 				F595FD7A29B5ADA00052828F /* NSEventExt.swift */,
 				F5863AD529B8A90D008109E4 /* NSPasteboardExt.swift */,
 				F5863AF229BA0809008109E4 /* TaskExt.swift */,
+				F56A52D92CF5DDBD008EF5EA /* NSApplicationExt.swift */,
 			);
 			path = NSExtensions;
 			sourceTree = "<group>";
@@ -211,8 +249,17 @@
 				F595FD7429B596D00052828F /* AccessibilityUIElement.swift */,
 				F595FD7629B5971A0052828F /* UIElementAccessor.swift */,
 				F5863AAA29B72B67008109E4 /* UIElementAttributeName.swift */,
+				F56A52DB2CF5DDE6008EF5EA /* AccessibilityAPI.swift */,
 			);
 			path = Accessibility;
+			sourceTree = "<group>";
+		};
+		F5D10AB22CE9698E0075B51E /* YandexTranslateUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F5D10AB32CE9698E0075B51E /* OnboardingUITests.swift */,
+			);
+			path = YandexTranslateUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +305,24 @@
 			productReference = F5863AB429B7605F008109E4 /* YandexTranslateTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		F5D10AB02CE9698E0075B51E /* YandexTranslateUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5D10AB92CE9698E0075B51E /* Build configuration list for PBXNativeTarget "YandexTranslateUITests" */;
+			buildPhases = (
+				F5D10AAD2CE9698E0075B51E /* Sources */,
+				F5D10AAE2CE9698E0075B51E /* Frameworks */,
+				F5D10AAF2CE9698E0075B51E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F5D10AB82CE9698E0075B51E /* PBXTargetDependency */,
+			);
+			name = YandexTranslateUITests;
+			productName = YandexTranslateUITests;
+			productReference = F5D10AB12CE9698E0075B51E /* YandexTranslateUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -265,7 +330,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1400;
+				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					F548442F29B46BF40068946C = {
@@ -273,6 +338,10 @@
 					};
 					F5863AB329B7605F008109E4 = {
 						CreatedOnToolsVersion = 14.0.1;
+						TestTargetID = F548442F29B46BF40068946C;
+					};
+					F5D10AB02CE9698E0075B51E = {
+						CreatedOnToolsVersion = 15.2;
 						TestTargetID = F548442F29B46BF40068946C;
 					};
 				};
@@ -295,6 +364,7 @@
 			targets = (
 				F548442F29B46BF40068946C /* YandexTranslate */,
 				F5863AB329B7605F008109E4 /* YandexTranslateTests */,
+				F5D10AB02CE9698E0075B51E /* YandexTranslateUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -318,6 +388,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F5D10AAF2CE9698E0075B51E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -325,8 +402,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F56A52DA2CF5DDBD008EF5EA /* NSApplicationExt.swift in Sources */,
 				F5863AA929B72635008109E4 /* SelectedTextExtracting.swift in Sources */,
 				F5D10AA82CE7E5800075B51E /* Environment.swift in Sources */,
+				F56A52DC2CF5DDE6008EF5EA /* AccessibilityAPI.swift in Sources */,
 				F595FD7929B5ABE10052828F /* AccessibilityErrors.swift in Sources */,
 				F5863AAF29B735B6008109E4 /* main.swift in Sources */,
 				F548443629B46BF40068946C /* OnboardingViewController.swift in Sources */,
@@ -351,10 +430,20 @@
 				F5863AD129B77053008109E4 /* PropertyStub.swift in Sources */,
 				F5863AE129B8AC89008109E4 /* AccessibilityBasedSelectedTextExtractorTests.swift in Sources */,
 				F5863ACF29B77053008109E4 /* MethodStub.swift in Sources */,
+				F5D10AAC2CE95DEA0075B51E /* OnboardingViewControllerTests.swift in Sources */,
 				F5863AEA29B9C17F008109E4 /* Helpers.swift in Sources */,
 				F5863AD429B7720D008109E4 /* Mocks.swift in Sources */,
 				F5863AEC29B9C4A6008109E4 /* PasteboardBasedSelectedTextExtractorTests.swift in Sources */,
+				F56A52DF2CF7228D008EF5EA /* TranslatorTests.swift in Sources */,
 				F5863AF129BA04D4008109E4 /* CallLogger.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5D10AAD2CE9698E0075B51E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5D10AB42CE9698E0075B51E /* OnboardingUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +454,11 @@
 			isa = PBXTargetDependency;
 			target = F548442F29B46BF40068946C /* YandexTranslate */;
 			targetProxy = F5863AB829B7605F008109E4 /* PBXContainerItemProxy */;
+		};
+		F5D10AB82CE9698E0075B51E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F548442F29B46BF40068946C /* YandexTranslate */;
+			targetProxy = F5D10AB72CE9698E0075B51E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -513,7 +607,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.librekht.YandexTranslate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -541,7 +635,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.librekht.YandexTranslate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -560,6 +654,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.librekht.YandexTranslateTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YandexTranslate.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/YandexTranslate";
@@ -577,9 +672,54 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.librekht.YandexTranslateTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YandexTranslate.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/YandexTranslate";
+			};
+			name = Release;
+		};
+		F5D10ABA2CE9698E0075B51E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BFCZTEYG58;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.librekht.YandexTranslateUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = YandexTranslate;
+			};
+			name = Debug;
+		};
+		F5D10ABB2CE9698E0075B51E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BFCZTEYG58;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.librekht.YandexTranslateUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = YandexTranslate;
 			};
 			name = Release;
 		};
@@ -609,6 +749,15 @@
 			buildConfigurations = (
 				F5863ABA29B7605F008109E4 /* Debug */,
 				F5863ABB29B7605F008109E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F5D10AB92CE9698E0075B51E /* Build configuration list for PBXNativeTarget "YandexTranslateUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5D10ABA2CE9698E0075B51E /* Debug */,
+				F5D10ABB2CE9698E0075B51E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
