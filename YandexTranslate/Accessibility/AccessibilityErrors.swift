@@ -21,7 +21,7 @@ struct UIElementAttributeError: LocalizedError {
     }
 }
 
-extension AXError: CustomStringConvertible {
+extension AXError: @retroactive CustomStringConvertible {
     public var description: String {
         switch self {
         case .cannotComplete: return "cannotComplete"

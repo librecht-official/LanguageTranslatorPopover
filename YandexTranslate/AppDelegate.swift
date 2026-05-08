@@ -16,30 +16,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         onboardingWindowController?.window?.setContentSize(NSSize(width: 480, height: 270))
         onboardingWindowController?.showWindow(nil)
         
-#if DEBUG
-//        notificationCenter.post(name: .YTShowTranslatorPopover, object: nil)
-#endif
+        #if DEBUG
+        // In Debug system calls `applicationShouldHandleReopen` after app launch.
+        #else
+        // In Release it doesn't. Don't know why.
+        notificationCenter.post(name: .YTShowTranslatorPopover, object: nil)
+        #endif
     }
-
+    
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         notificationCenter.post(name: .YTShowTranslatorPopover, object: nil)
         return true
     }
 }
-
-//import Carbon
-//
-//class TestAppDelegate: NSObject, NSApplicationDelegate {
-//    let notificationCenter = NotificationCenter.default
-//    var translationActivator: TranslationActivator?
-//    
-//    func applicationDidFinishLaunching(_ aNotification: Notification) {
-//        translationActivator = TranslationActivator(selectedTextExtractors: [
-//            SelectedTextExtractingMock()
-//        ])
-//        translationActivator?.start()
-//        CGEvent.key(kVK_ANSI_Z, down: true, .maskControl)?.post(tap: .cghidEventTap)
-//        CGEvent.key(kVK_ANSI_Z, down: false, .maskControl)?.post(tap: .cghidEventTap)
-////        notificationCenter.post(name: .YTShowTranslatorPopover, object: nil)
-//    }
-//}

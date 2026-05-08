@@ -3,6 +3,7 @@
 
 import Cocoa
 import Carbon
+import OSLog
 
 @MainActor
 // sourcery: AutoMockable
@@ -17,6 +18,7 @@ final class _TranslationActivator<Monitor: GlobalMonitoring>: TranslationActivat
     let notificationCenter: NotificationCenter
     let selectedTextExtractors: [SelectedTextExtracting]
     let coordinator: TranslatorViewCoordinating
+    let logger = Logger(category: "TranslationActivator")
     
     init(selectedTextExtractors: [SelectedTextExtracting]? = nil, coordinator: TranslatorViewCoordinating? = nil, notificationCenter: NotificationCenter = .default) {
         self.selectedTextExtractors = selectedTextExtractors ?? [
@@ -37,13 +39,14 @@ final class _TranslationActivator<Monitor: GlobalMonitoring>: TranslationActivat
     }
     
     @objc private func showTranslatorView() {
+        logger.debug("Show translator view from notification")
         coordinator.showPopover(text: "", textFrame: nil)
     }
     
     private func findSelectedTextAndRunTranslator() {
         Task {
             let info = await findSelectedText()
-            print("Selected text: \(String(describing: info))")
+            logger.debug("Selected text: \(info.toString)")
             coordinator.showPopover(text: info?.text ?? "", textFrame: info?.textFrame)
         }
     }
@@ -54,7 +57,7 @@ final class _TranslationActivator<Monitor: GlobalMonitoring>: TranslationActivat
                 return try await extractor.selectedTextInfo()
             }
             catch {
-                print(error)
+                logger.error("Selected text not found: \(error)")
             }
         }
         return nil

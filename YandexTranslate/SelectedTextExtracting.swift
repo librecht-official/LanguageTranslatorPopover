@@ -69,7 +69,7 @@ struct _PasteboardBasedSelectedTextExtractor<Event: SystemEvent, Task: TaskProto
         if let result = result {
             return SelectedTextInfo(text: result, textFrame: nil)
         }
-        throw TextError("Failed to get selected text with pasteboard")
+        throw TextError("Pasteboard has no string content")
     }
     
     private func performCopyShortcut() {

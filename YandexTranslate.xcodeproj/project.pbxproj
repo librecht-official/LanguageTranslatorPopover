@@ -36,10 +36,10 @@
 		F595FD7B29B5ADA00052828F /* NSEventExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7A29B5ADA00052828F /* NSEventExt.swift */; };
 		F595FD7D29B5AF1E0052828F /* TranslatorViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7C29B5AF1E0052828F /* TranslatorViewCoordinator.swift */; };
 		F595FD7F29B5B0B70052828F /* TranslatorWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F595FD7E29B5B0B70052828F /* TranslatorWebViewController.swift */; };
-		F5D10AA82CE7E5800075B51E /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D10AA72CE7E5800075B51E /* Environment.swift */; };
 		F5D10AAA2CE7E5B60075B51E /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D10AA92CE7E5B60075B51E /* Scope.swift */; };
 		F5D10AAC2CE95DEA0075B51E /* OnboardingViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D10AAB2CE95DEA0075B51E /* OnboardingViewControllerTests.swift */; };
 		F5D10AB42CE9698E0075B51E /* OnboardingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D10AB32CE9698E0075B51E /* OnboardingUITests.swift */; };
+		F5EFF1CD2FADB1C800171198 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EFF1CC2FADB1BA00171198 /* Logging.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,11 +91,11 @@
 		F595FD7A29B5ADA00052828F /* NSEventExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSEventExt.swift; sourceTree = "<group>"; };
 		F595FD7C29B5AF1E0052828F /* TranslatorViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorViewCoordinator.swift; sourceTree = "<group>"; };
 		F595FD7E29B5B0B70052828F /* TranslatorWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorWebViewController.swift; sourceTree = "<group>"; };
-		F5D10AA72CE7E5800075B51E /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		F5D10AA92CE7E5B60075B51E /* Scope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scope.swift; sourceTree = "<group>"; };
 		F5D10AAB2CE95DEA0075B51E /* OnboardingViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewControllerTests.swift; sourceTree = "<group>"; };
 		F5D10AB12CE9698E0075B51E /* YandexTranslateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YandexTranslateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5D10AB32CE9698E0075B51E /* OnboardingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUITests.swift; sourceTree = "<group>"; };
+		F5EFF1CC2FADB1BA00171198 /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +150,6 @@
 			children = (
 				F548443C29B46BF60068946C /* YandexTranslate.entitlements */,
 				F548443329B46BF40068946C /* AppDelegate.swift */,
-				F5D10AA72CE7E5800075B51E /* Environment.swift */,
 				F5863AAE29B735B6008109E4 /* main.swift */,
 				F548443529B46BF40068946C /* OnboardingViewController.swift */,
 				F5D10AA92CE7E5B60075B51E /* Scope.swift */,
@@ -219,6 +218,7 @@
 		F5863AD729B8A916008109E4 /* NSExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				F5EFF1CC2FADB1BA00171198 /* Logging.swift */,
 				F595FD7A29B5ADA00052828F /* NSEventExt.swift */,
 				F5863AD529B8A90D008109E4 /* NSPasteboardExt.swift */,
 				F5863AF229BA0809008109E4 /* TaskExt.swift */,
@@ -404,7 +404,7 @@
 			files = (
 				F56A52DA2CF5DDBD008EF5EA /* NSApplicationExt.swift in Sources */,
 				F5863AA929B72635008109E4 /* SelectedTextExtracting.swift in Sources */,
-				F5D10AA82CE7E5800075B51E /* Environment.swift in Sources */,
+				F5EFF1CD2FADB1C800171198 /* Logging.swift in Sources */,
 				F56A52DC2CF5DDE6008EF5EA /* AccessibilityAPI.swift in Sources */,
 				F595FD7929B5ABE10052828F /* AccessibilityErrors.swift in Sources */,
 				F5863AAF29B735B6008109E4 /* main.swift in Sources */,
@@ -601,13 +601,12 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Yandex Translate";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Microphone is required for voice input";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.librekht.YandexTranslate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -629,13 +628,12 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Yandex Translate";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Microphone is required for voice input";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.librekht.YandexTranslate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
