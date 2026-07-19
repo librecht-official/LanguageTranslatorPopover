@@ -10,6 +10,12 @@ extension Logger {
     }
 }
 
+enum Log {
+    static let app = Logger(category: "Application")
+    static let activator = Logger(category: "TranslationActivator")
+    static let webView = Logger(category: "TranslatorWebView")
+}
+
 extension String.StringInterpolation {
     mutating func appendInterpolation<T>(_ optional: T?) {
         if let value = optional {

@@ -10,7 +10,7 @@ protocol TranslatorViewCoordinating {
 
 @MainActor
 final class TranslatorViewCoordinator: NSObject, TranslatorViewCoordinating {
-    // Panel displayed over selected text as a popover anchor
+    // Panel displayed over selected text as a popover's anchor
     let panel = NSPanel(
         contentRect: .zero,
         styleMask: [.borderless, .utilityWindow, .nonactivatingPanel, .fullSizeContentView],

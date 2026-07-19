@@ -18,7 +18,6 @@ final class _TranslationActivator<Monitor: GlobalMonitoring>: TranslationActivat
     let notificationCenter: NotificationCenter
     let selectedTextExtractors: [SelectedTextExtracting]
     let coordinator: TranslatorViewCoordinating
-    let logger = Logger(category: "TranslationActivator")
     
     init(selectedTextExtractors: [SelectedTextExtracting]? = nil, coordinator: TranslatorViewCoordinating? = nil, notificationCenter: NotificationCenter = .default) {
         self.selectedTextExtractors = selectedTextExtractors ?? [
@@ -39,14 +38,14 @@ final class _TranslationActivator<Monitor: GlobalMonitoring>: TranslationActivat
     }
     
     @objc private func showTranslatorView() {
-        logger.debug("Show translator view from notification")
+        Log.activator.debug("Show translator view from notification")
         coordinator.showPopover(text: "", textFrame: nil)
     }
     
     private func findSelectedTextAndRunTranslator() {
         Task {
             let info = await findSelectedText()
-            logger.debug("Selected text: \(info.toString)")
+            Log.activator.debug("Selected text: \(info.toString)")
             coordinator.showPopover(text: info?.text ?? "", textFrame: info?.textFrame)
         }
     }
@@ -57,7 +56,7 @@ final class _TranslationActivator<Monitor: GlobalMonitoring>: TranslationActivat
                 return try await extractor.selectedTextInfo()
             }
             catch {
-                logger.error("Selected text not found: \(error)")
+                Log.activator.error("Selected text not found: \(error)")
             }
         }
         return nil

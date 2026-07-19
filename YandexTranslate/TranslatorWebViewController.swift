@@ -9,7 +9,6 @@ import OSLog
 final class TranslatorWebViewController: NSViewController {
     let contentSize = CGSize(width: 800, height: 650)
     let webView: WKWebView
-    let logger = Logger(category: "TranslatorWebView")
     
     init() {
         let webViewFrame = CGRect(origin: .zero, size: contentSize)
@@ -35,7 +34,7 @@ final class TranslatorWebViewController: NSViewController {
         let reloadInterval = DispatchTimeInterval.seconds(60 * 60 * 24)
         timer.schedule(deadline: .now() + reloadInterval, repeating: reloadInterval, leeway: .seconds(60))
         timer.setEventHandler { [weak self] in
-            self?.logger.debug("Reload web page at: \(Date())")
+            Log.webView.debug("Reload web page at: \(Date())")
             self?.webView.reload()
         }
         return timer
@@ -86,13 +85,32 @@ final class TranslatorWebViewController: NSViewController {
           return true;
         }
         
-        var textarea = Array.from(document.querySelectorAll(`input, textarea, [role="textbox"]`)).find(isVisibleToAccessibility);
-        textarea.focus();
-        textarea.value = '\(escapedString)'
-        var event = new Event('input', { bubbles: true });
-        textarea.dispatchEvent(event);
+        function findTextArea() {
+            return Array.from(document.querySelectorAll(`input, textarea, [role="textbox"]`)).find(isVisibleToAccessibility);
+        }
+        
+        function setText(textarea) {
+            textarea.focus();
+            textarea.value = '\(escapedString)'
+            var event = new Event('input', { bubbles: true });
+            textarea.dispatchEvent(event);
+        }
+        
+        var textarea = findTextArea();
+        
+        if (textarea === undefined) {
+            var interval = setInterval(function() {
+                textarea = findTextArea();
+                if (textarea !== undefined) {
+                    clearInterval(interval);
+                    setText(textarea);
+                }    
+            }, 100);
+        } else {
+            setText(textarea);
+        }
         """
-        logger.debug("Setting text to translate: \(escapedString)")
+        Log.webView.debug("Setting text to translate: \(escapedString)")
         
         webView.evaluateJavaScript(javascript) { [weak self] obj, error in
             self?.logJSCodeEvalResult(obj, error)
@@ -103,7 +121,9 @@ final class TranslatorWebViewController: NSViewController {
 
 extension TranslatorWebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping @MainActor (WKNavigationActionPolicy) -> Void) {
-        if let url = navigationAction.request.url, url.absoluteString.contains("translate.yandex.com") {
+        Log.webView.debug("webView: decidePolicyFor: \(navigationAction)")
+        
+        if let url = navigationAction.request.url, url.host() == "translate.yandex.com" {
             decisionHandler(.allow)
         } else {
             decisionHandler(.cancel)
@@ -111,7 +131,7 @@ extension TranslatorWebViewController: WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        logger.debug("Tuning web page content and style")
+        Log.webView.debug("Tuning web page content and style")
         let javascript = """
         document.getElementById('header')?.remove();
         document.getElementsByClassName('side-block')?.[0]?.remove();
@@ -129,6 +149,6 @@ extension TranslatorWebViewController: WKNavigationDelegate {
     }
     
     func logJSCodeEvalResult(_ obj: Any?, _ error: Error?, fromFn: StaticString = #function) {
-        logger.debug("[\(fromFn)] JS code evaluation result: \(obj.toString). Error: \(error)")
+        Log.webView.debug("[\(fromFn)] JS code evaluation result: \(obj.toString). Error: \(error)")
     }
 }
